@@ -61,7 +61,7 @@ https://tv-trtbelgesel.medya.trt.com.tr/master_720.m3u8
 https://dogus-live.daioncdn.net/tlc/tlc_720p.m3u8
 #EXTINF:-1 tvg-name="DMAX" tvg-id="Dmax.tr" tvg-logo="https://i.ibb.co/1LH22gK/dmax.png" group-title="📽️ Belgesel",DMAX
 https://dogus-live.daioncdn.net/dmax/dmax_720p.m3u8
-#EXTINF:-1 tvg-name="DOCU SCREEN" tvg-id="" tvg-logo="https://www.turksatkablo.com.tr/inc/Kanaldosya-getir.aspx?ID=489" group-title="📽️ Belgesel",DOCU SCREEN
+#EXTINF:-1 tvg-name="DOCU SCREEN" tvg-id="" tvg-logo="https://www.dsmart.com.tr/api/v1/public/images/kanallar/docu_screen.jpeg" group-title="📽️ Belgesel",DOCU SCREEN
 https://tv1.arectv30.sbs/live/docubox.m3u8
 #EXTINF:-1 tvg-name="TARİH TV" tvg-id="" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/5/5a/Tarih-tv-logo-siyah-1080x1080.png" group-title="📽️ Belgesel",TARİH TV
 https://tv1.arectv30.sbs/live/tarihtv.m3u8
@@ -169,25 +169,25 @@ https://bfxy3jgeydpbphtk8qfqwm3hr.medya.trt.com.tr/master_1080p.m3u8
 https://z3mmimwz148csv0vaxtphqspf.medya.trt.com.tr/master_1080p.m3u8
 #EXTINF:-1 tvg-name="TABİİ SPOR 6 HD" tvg-id="73" tvg-logo="https://image.milimaj.com/i/milliyet/75/750x0/66ebe052677058f33337d70b.jpg" group-title="🏃 Tabii Spor",TABİİ SPOR 6 HD
 https://vbtob9hyq58eiophct5qctxr2.medya.trt.com.tr/master_1080p.m3u8
-#EXTINF:-1 tvg-name="FX" tvg-id="73" tvg-logo="https://i.ibb.co/0XQz0QJ/fx.png" group-title="🎬 Sinema",FX
+#EXTINF:-1 tvg-name="FX" tvg-id="73" tvg-logo="https://raw.githubusercontent.com/GitLatte/m3ueditor/refs/heads/site/images/kanal-gorselleri/turkiye/fx-tr.png" group-title="🎬 Sinema",FX
 https://saran-live.ercdn.net/fx/index.m3u8
 #EXTINF:-1 tvg-name="MOVİESMART TÜRK" tvg-id="67" tvg-logo="https://i.ibb.co/0XQz0QJ/moviesmart.png" group-title="🎬 Sinema",MOVİESMART TÜRK
 https://tv1.arectv30.sbs/live/mvturk.m3u8
-#EXTINF:-1 tvg-name="SİNEMA TV" tvg-id="61" tvg-logo="https://i.ibb.co/0XQz0QJ/sinema-tv.png" group-title="🎬 Sinema",SİNEMA TV
+#EXTINF:-1 tvg-name="SİNEMA TV" tvg-id="61" tvg-logo="https://raw.githubusercontent.com/GitLatte/m3ueditor/refs/heads/site/images/kanal-gorselleri/turkiye/sinema-tv-tr.png" group-title="🎬 Sinema",SİNEMA TV
 https://tv1.arectv30.sbs/live/sinema.m3u8
-#EXTINF:-1 tvg-name="SİNEMA TV 2" tvg-id="60" tvg-logo="https://i.ibb.co/0XQz0QJ/sinema-tv.png" group-title="🎬 Sinema",SİNEMA TV 2
+#EXTINF:-1 tvg-name="SİNEMA TV 2" tvg-id="60" tvg-logo="https://raw.githubusercontent.com/GitLatte/m3ueditor/refs/heads/site/images/kanal-gorselleri/turkiye/sinema-tv2-tr.png" group-title="🎬 Sinema",SİNEMA TV 2
 https://tv1.arectv30.sbs/live/sinema2.m3u8
-#EXTINF:-1 tvg-name="SİNEMA TV AKSİYON" tvg-id="59" tvg-logo="https://i.ibb.co/0XQz0QJ/sinema-aksiyon.png" group-title="🎬 Sinema",SİNEMA TV AKSİYON
+#EXTINF:-1 tvg-name="SİNEMA TV AKSİYON" tvg-id="59" tvg-logo="https://raw.githubusercontent.com/GitLatte/m3ueditor/refs/heads/site/images/kanal-gorselleri/turkiye/sinema-aksiyon-tr.png" group-title="🎬 Sinema",SİNEMA TV AKSİYON
 https://tv1.arectv30.sbs/live/sinemaaksiyon.m3u8
-#EXTINF:-1 tvg-name="SİNEMA TV KOMEDİ" tvg-id="57" tvg-logo="https://i.ibb.co/0XQz0QJ/sinema-komedi.png" group-title="🎬 Sinema",SİNEMA TV KOMEDİ
+#EXTINF:-1 tvg-name="SİNEMA TV KOMEDİ" tvg-id="57" tvg-logo="https://raw.githubusercontent.com/GitLatte/m3ueditor/refs/heads/site/images/kanal-gorselleri/turkiye/sinema-komedi-tr.png" group-title="🎬 Sinema",SİNEMA TV KOMEDİ
 https://tv1.arectv30.sbs/live/sinemakomedi.m3u8
-#EXTINF:-1 tvg-name="SİNEMA TV YERLİ" tvg-id="56" tvg-logo="https://i.ibb.co/0XQz0QJ/sinema-yerli.png" group-title="🎬 Sinema",SİNEMA TV YERLİ
+#EXTINF:-1 tvg-name="SİNEMA TV YERLİ" tvg-id="56" tvg-logo="https://raw.githubusercontent.com/GitLatte/m3ueditor/refs/heads/site/images/kanal-gorselleri/turkiye/sinema-yerli-tr.png" group-title="🎬 Sinema",SİNEMA TV YERLİ
 https://tv1.arectv30.sbs/live/sinemayerli.m3u8
-#EXTINF:-1 tvg-name="SİNEMA TV AİLE" tvg-id="55" tvg-logo="https://i.ibb.co/0XQz0QJ/sinema-aile.png" group-title="🎬 Sinema",SİNEMA TV AİLE
+#EXTINF:-1 tvg-name="SİNEMA TV AİLE" tvg-id="55" tvg-logo="https://raw.githubusercontent.com/GitLatte/m3ueditor/refs/heads/site/images/kanal-gorselleri/turkiye/sinema-aile-tr.png" group-title="🎬 Sinema",SİNEMA TV AİLE
 https://tv1.arectv30.sbs/live/sinemaaile.m3u8
-#EXTINF:-1 tvg-name="SİNEMA TV 1001" tvg-id="53" tvg-logo="https://i.ibb.co/0XQz0QJ/sinema-1001.png" group-title="🎬 Sinema",SİNEMA TV 1001
+#EXTINF:-1 tvg-name="SİNEMA TV 1001" tvg-id="53" tvg-logo="https://raw.githubusercontent.com/GitLatte/m3ueditor/refs/heads/site/images/kanal-gorselleri/turkiye/sinema-1001-tr.png" group-title="🎬 Sinema",SİNEMA TV 1001
 https://tv1.arectv30.sbs/live/sinema1001.m3u8
-#EXTINF:-1 tvg-name="SİNEMA TV 1002" tvg-id="52" tvg-logo="https://i.ibb.co/0XQz0QJ/sinema-1002.png" group-title="🎬 Sinema",SİNEMA TV 1002
+#EXTINF:-1 tvg-name="SİNEMA TV 1002" tvg-id="52" tvg-logo="https://raw.githubusercontent.com/GitLatte/m3ueditor/refs/heads/site/images/kanal-gorselleri/turkiye/sinema-1002-tr.png" group-title="🎬 Sinema",SİNEMA TV 1002
 https://tv1.arectv30.sbs/live/sinema1002.m3u8
 #EXTINF:-1 tvg-name="KRAL POP TV" tvg-id="" tvg-logo="https://i.ibb.co/vk0bKz0/kral-pop.png" group-title="🎵 Müzik",KRAL POP TV
 https://dogus-live.daioncdn.net/kralpoptv/playlist.m3u8
@@ -203,23 +203,21 @@ https://listen.powerapp.com.tr/pturkslow/slow.smil/playlist.m3u8
 https://listen.powerapp.com.tr/pturktaptaze/taptaze.smil/playlist.m3u8
 #EXTINF:-1 tvg-name="DREAM TÜRK TV" tvg-id="" tvg-logo="https://i.ibb.co/fxRrKmB/dream-turk.png" group-title="🎵 Müzik",DREAM TÜRK TV
 https://live.duhnet.tv/S2/HLS_LIVE/dreamturknp/playlist.m3u8
-#EXTINF:-1 tvg-name="FİNEST TV" tvg-id="" tvg-logo="https://i.ibb.co/0XQz0QJ/finest-tv.png" group-title="🎵 Müzik",FİNEST TV
+#EXTINF:-1 tvg-name="FİNEST TV" tvg-id="" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTCXZTP2HMJ2_UQCTj5shGuB057tuyrLfNMRg&s" group-title="🎵 Müzik",FİNEST TV
 https://media.finest.tv/hls/live.m3u8
-#EXTINF:-1 tvg-name="NUMBER TÜRK TV" tvg-id="" tvg-logo="https://i.ibb.co/0XQz0QJ/number-turk.png" group-title="🎵 Müzik",NUMBER TÜRK TV
+#EXTINF:-1 tvg-name="NUMBER TÜRK TV" tvg-id="" tvg-logo="https://static.ssportplus.com/wp-content/uploads/2024/03/nr1turk-768x768.png" group-title="🎵 Müzik",NUMBER TÜRK TV
 https://b01c02nl.mediatriple.net/videoonlylive/mtkgeuihrlfwlive/broadcast_5c9e187770143.smil/playlist.m3u8?md5=T5XRaMShyuirhEdm4U70yQ&expires=1745141016
-#EXTINF:-1 tvg-name="MEZZO LİVE HD" tvg-id="" tvg-logo="https://i.ibb.co/0XQz0QJ/mezzo.png" group-title="🎵 Müzik",MEZZO LİVE HD
-http://ott-cdn.ucom.am/s35/index.m3u8
-#EXTINF:-1 tvg-name="TRT ÇOCUK" tvg-id="" tvg-logo="https://i.ibb.co/0XQz0QJ/trt-cocuk.png" group-title="🧒 Çocuk",TRT ÇOCUK
+#EXTINF:-1 tvg-name="TRT ÇOCUK" tvg-id="" tvg-logo="https://raw.githubusercontent.com/GitLatte/m3ueditor/refs/heads/site/images/kanal-gorselleri/turkiye/trt-cocuk-tr.png" group-title="🧒 Çocuk",TRT ÇOCUK
 https://tv-trtcocuk.medya.trt.com.tr/master.m3u8
-#EXTINF:-1 tvg-name="TRT DİYANET ÇOCUK" tvg-id="" tvg-logo="https://i.ibb.co/0XQz0QJ/trt-diyanet-cocuk.png" group-title="🧒 Çocuk",TRT DİYANET ÇOCUK
+#EXTINF:-1 tvg-name="TRT DİYANET ÇOCUK" tvg-id="" tvg-logo="https://raw.githubusercontent.com/GitLatte/m3ueditor/refs/heads/site/images/kanal-gorselleri/turkiye/trt-cocuk-tr.png" group-title="🧒 Çocuk",TRT DİYANET ÇOCUK
 https://tv-trtdiyanetcocuk.medya.trt.com.tr/master.m3u8
-#EXTINF:-1 tvg-name="CARTOON NETWORK" tvg-id="" tvg-logo="https://i.ibb.co/0XQz0QJ/cartoon-network.png" group-title="🧒 Çocuk",CARTOON NETWORK
+#EXTINF:-1 tvg-name="CARTOON NETWORK" tvg-id="" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/8/80/Cartoon_Network_2010_logo.svg" group-title="🧒 Çocuk",CARTOON NETWORK
 https://tv1.arectv30.sbs/live/cartoonnetwork.m3u8
-#EXTINF:-1 tvg-name="MİNİKA GO" tvg-id="" tvg-logo="https://i.ibb.co/0XQz0QJ/minika-go.png" group-title="🧒 Çocuk",MİNİKA GO
+#EXTINF:-1 tvg-name="MİNİKA GO" tvg-id="" tvg-logo="https://raw.githubusercontent.com/GitLatte/m3ueditor/refs/heads/site/images/kanal-gorselleri/turkiye/minika-go-tr.png" group-title="🧒 Çocuk",MİNİKA GO
 https://trkvz-live.daioncdn.net/minikago/minikago.m3u8
-#EXTINF:-1 tvg-name="MİNİKA ÇOCUK" tvg-id="" tvg-logo="https://i.ibb.co/0XQz0QJ/minika-cocuk.png" group-title="🧒 Çocuk",MİNİKA ÇOCUK
+#EXTINF:-1 tvg-name="MİNİKA ÇOCUK" tvg-id="" tvg-logo="https://raw.githubusercontent.com/GitLatte/m3ueditor/refs/heads/site/images/kanal-gorselleri/turkiye/minika-cocuk-tr.png" group-title="🧒 Çocuk",MİNİKA ÇOCUK
 https://trkvz-live.daioncdn.net/minikago_cocuk/minikago_cocuk.m3u8
-#EXTINF:-1 tvg-name="BABY TV HD" tvg-id="35" tvg-logo="https://i.ibb.co/0XQz0QJ/baby-tv.png" group-title="🧒 Çocuk",BABY TV HD
+#EXTINF:-1 tvg-name="BABY TV HD" tvg-id="35" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxTEFUEuKR8h4oQmICzD5DWbCQ-hB014K4ww&s" group-title="🧒 Çocuk",BABY TV HD
 https://saran-live.ercdn.net/babytv/index.m3u8
-#EXTINF:-1 tvg-name="Disney JR" tvg-id="33" tvg-logo="https://i.ibb.co/0XQz0QJ/disney-jr.png" group-title="🧒 Çocuk",Disney JR
+#EXTINF:-1 tvg-name="Disney JR" tvg-id="33" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXFSG6NE19lkP7OKZcQXQgPY3iXLI9p1P8EQ&s" group-title="🧒 Çocuk",Disney JR
 https://saran-live.ercdn.net/disneyjunior/index.m3u8

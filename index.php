@@ -1,0 +1,1106 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vettel Channel</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-light: #2c3e50;
+            --secondary-light: #34495e;
+            --accent-light: #3498db;
+            --light-light: #ecf0f1;
+            --dark-light: #2c3e50;
+            --gray-light: #95a5a6;
+            --bg-light: #f8f9fa;
+            --card-bg-light: #ffffff;
+            --modal-bg-light: rgba(0, 0, 0, 0.92);
+            --text-light: #333333;
+            
+            --primary-dark: #3498db;
+            --secondary-dark: #2980b9;
+            --accent-dark: #2ecc71;
+            --light-dark: #34495e;
+            --dark-dark: #2c3e50;
+            --gray-dark: #7f8c8d;
+            --bg-dark: #1a1a1a;
+            --card-bg-dark: #2d3436;
+            --modal-bg-dark: rgba(0, 0, 0, 0.95);
+            --text-dark: #ecf0f1;
+            
+            --primary: var(--primary-light);
+            --secondary: var(--secondary-light);
+            --accent: var(--accent-light);
+            --light: var(--light-light);
+            --dark: var(--dark-light);
+            --gray: var(--gray-light);
+            --bg: var(--bg-light);
+            --card-bg: var(--card-bg-light);
+            --modal-bg: var(--modal-bg-light);
+            --text: var(--text-light);
+        }
+
+        .dark-mode {
+            --primary: var(--primary-dark);
+            --secondary: var(--secondary-dark);
+            --accent: var(--accent-dark);
+            --light: var(--light-dark);
+            --dark: var(--dark-dark);
+            --gray: var(--gray-dark);
+            --bg: var(--bg-dark);
+            --card-bg: var(--card-bg-dark);
+            --modal-bg: var(--modal-bg-dark);
+            --text: var(--text-dark);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            background-image: url('https://wallpapercave.com/wp/wp4269837.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-blend-mode: overlay;
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+
+        /* Password Screen Styles */
+        .password-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            backdrop-filter: blur(5px);
+        }
+
+        .password-container {
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .password-logo {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #3498db;
+        }
+
+        .password-title {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: white;
+        }
+
+        .password-input {
+            width: 100%;
+            padding: 0.8rem;
+            margin-bottom: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+            font-size: 1rem;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+        }
+
+        .password-submit {
+            width: 100%;
+            padding: 0.8rem;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .password-submit:hover {
+            background-color: #2980b9;
+        }
+
+        .password-error {
+            color: #e74c3c;
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+            display: none;
+        }
+
+        .contact-support {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: #3498db;
+            text-decoration: none;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .contact-support:hover {
+            text-decoration: underline;
+        }
+
+        /* Navbar Styles */
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 20px;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: white;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .search-container {
+            flex-grow: 1;
+            max-width: 600px;
+            margin: 0 2rem;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            border: none;
+            font-size: 1rem;
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            outline: none;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .search-input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .search-btn {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: rgba(255, 255, 255, 0.7);
+            cursor: pointer;
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .theme-toggle:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Group Filter */
+        .group-filter {
+            display: flex;
+            gap: 10px;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .group-btn {
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 0.9rem;
+        }
+
+        .group-btn:hover {
+            background-color: #3498db;
+            color: white;
+        }
+
+        .group-btn.active {
+            background-color: #3498db;
+            color: white;
+            font-weight: bold;
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1400px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        /* Channel Grid */
+        .channel-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .channel-card {
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .channel-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .channel-logo-container {
+            height: 140px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+            padding: 1rem;
+        }
+
+        .channel-logo {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            transition: transform 0.3s;
+        }
+
+        .channel-card:hover .channel-logo {
+            transform: scale(1.08);
+        }
+
+        .channel-info {
+            padding: 1.2rem;
+        }
+
+        .channel-name {
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            color: white;
+        }
+
+        .channel-group {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.7);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .modal.show {
+            opacity: 1;
+            display: flex;
+        }
+
+        .modal-content {
+            width: 90%;
+            max-width: 1100px;
+            background-color: #2c3e50;
+            border-radius: 12px;
+            overflow: hidden;
+            transform: scale(0.95);
+            transition: transform 0.3s;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+        }
+
+        .modal.show .modal-content {
+            transform: scale(1);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 1.5rem;
+            background-color: #34495e;
+            color: white;
+        }
+
+        .modal-channel-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .modal-channel-logo {
+            width: 36px;
+            height: 36px;
+            object-fit: contain;
+            border-radius: 50%;
+        }
+
+        .modal-channel-name {
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .close-modal {
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: white;
+            transition: color 0.2s;
+            background: none;
+            border: none;
+            padding: 0.5rem;
+            line-height: 1;
+        }
+
+        .close-modal:hover {
+            color: #3498db;
+        }
+
+        .modal-video-container {
+            width: 100%;
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+        }
+
+        .modal-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+        }
+
+        /* Loading State */
+        .loading-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 300px;
+        }
+
+        .loading-spinner {
+            border: 5px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top: 5px solid #3498db;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Error State */
+        .error-message {
+            color: #e74c3c;
+            padding: 2rem;
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 8px;
+            margin: 2rem 0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 992px) {
+            .navbar {
+                flex-direction: column;
+                padding: 1rem;
+                gap: 1rem;
+            }
+            
+            .search-container {
+                margin: 0;
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .channel-grid {
+                grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            }
+            
+            .channel-logo-container {
+                height: 120px;
+            }
+            
+            .password-container {
+                padding: 1.5rem;
+            }
+            
+            .password-title {
+                font-size: 1.3rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .container {
+                padding: 0 1rem;
+            }
+            
+            .channel-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                gap: 1rem;
+            }
+            
+            .channel-info {
+                padding: 1rem;
+            }
+            
+            .modal-header {
+                padding: 1rem;
+            }
+            
+            .modal-channel-name {
+                font-size: 1rem;
+            }
+            
+            .password-container {
+                padding: 1rem;
+                width: 95%;
+            }
+            
+            .contact-support {
+                top: 10px;
+                right: 10px;
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Password Screen -->
+    <div class="password-screen" id="passwordScreen">
+        <div class="password-container">
+            <div class="password-logo">
+                <i class="fas fa-tv"></i>
+            </div>
+            <h2 class="password-title">Vettel Channel</h2>
+            <input type="password" class="password-input" id="passwordInput" placeholder="Şifreyi girin">
+            <button class="password-submit" id="passwordSubmit">Giriş Yap</button>
+            <div class="password-error" id="passwordError">Hatalı şifre! Lütfen tekrar deneyin.</div>
+            <a href="/sifre.php" class="contact-support" target="_blank">
+                <i class="fas fa-key"></i> Şifre için iletişim
+            </a>
+        </div>
+    </div>
+
+    <!-- Main Content (Hidden until password is entered) -->
+    <div id="mainContent" style="display: none;">
+        <!-- Navbar -->
+        <nav class="navbar">
+            <div class="logo">
+                <i class="fas fa-tv"></i>
+                <span>Vettel Channel</span>
+            </div>
+            
+            <div class="search-container">
+                <input type="text" class="search-input" id="searchInput" placeholder="Kanal ara...">
+                <button class="search-btn" id="searchBtn">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+            
+            <button class="theme-toggle" id="themeToggle">
+                <i class="fas fa-moon"></i>
+            </button>
+        </nav>
+
+        <!-- Main Content -->
+        <div class="container">
+            <div id="groupsFilter" class="group-filter"></div>
+            <div id="channelsContainer">
+                <div class="loading-container">
+                    <div class="loading-spinner"></div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Video Modal -->
+        <div class="modal" id="videoModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="modal-channel-info">
+                        <img id="modalChannelLogo" src="" alt="" class="modal-channel-logo">
+                        <span id="modalChannelName">Kanal Yükleniyor...</span>
+                    </div>
+                    <button class="close-modal" id="closeModal">&times;</button>
+                </div>
+                <div class="modal-video-container">
+                    <video id="modalVideoPlayer" class="modal-video" controls></video>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Password elements
+            const passwordScreen = document.getElementById('passwordScreen');
+            const passwordInput = document.getElementById('passwordInput');
+            const passwordSubmit = document.getElementById('passwordSubmit');
+            const passwordError = document.getElementById('passwordError');
+            const mainContent = document.getElementById('mainContent');
+            
+            // Main app elements
+            const channelsContainer = document.getElementById('channelsContainer');
+            const videoModal = document.getElementById('videoModal');
+            const modalVideoPlayer = document.getElementById('modalVideoPlayer');
+            const modalChannelName = document.getElementById('modalChannelName');
+            const modalChannelLogo = document.getElementById('modalChannelLogo');
+            const closeModal = document.getElementById('closeModal');
+            const searchInput = document.getElementById('searchInput');
+            const searchBtn = document.getElementById('searchBtn');
+            const groupsFilter = document.getElementById('groupsFilter');
+            const themeToggle = document.getElementById('themeToggle');
+            
+            // M3U dosyasının URL'si
+            const m3uUrl = '/vettelchannel.txt';
+            
+            // Şifrelerin bulunduğu dosya
+            const passwordsUrl = 'sifreler.txt';
+            
+            // HLS desteği kontrolü
+            let hls = null;
+            let isSafari = false;
+            
+            // Şifre kontrolü
+            passwordSubmit.addEventListener('click', checkPassword);
+            passwordInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    checkPassword();
+                }
+            });
+            
+            // Şifreleri yükle ve şifre kontrol fonksiyonunu çalıştır
+            loadPasswords().then(validPasswords => {
+                window.validPasswords = validPasswords;
+            }).catch(error => {
+                console.error('Şifreler yüklenirken hata oluştu:', error);
+                passwordError.textContent = 'Şifreler yüklenirken hata oluştu. Lütfen sayfayı yenileyin.';
+                passwordError.style.display = 'block';
+            });
+            
+            // Şifreleri dosyadan yükleme fonksiyonu
+            async function loadPasswords() {
+                try {
+                    const response = await fetch(passwordsUrl);
+                    if (!response.ok) throw new Error('Şifre dosyası yüklenemedi');
+                    const text = await response.text();
+                    
+                    // Her satırı bir şifre olarak al ve boş satırları filtrele
+                    const passwords = text.split('\n')
+                        .map(line => line.trim())
+                        .filter(line => line.length > 0);
+                    
+                    if (passwords.length === 0) {
+                        throw new Error('Şifre dosyası boş veya geçersiz format');
+                    }
+                    
+                    return passwords;
+                } catch (error) {
+                    console.error('Şifreler yüklenirken hata:', error);
+                    // Varsayılan şifrelerle devam et
+                    return ['vettel', '1234', 'password'];
+                }
+            }
+            
+            // Şifre kontrol fonksiyonu
+            function checkPassword() {
+                const enteredPassword = passwordInput.value.trim();
+                
+                if (window.validPasswords && window.validPasswords.includes(enteredPassword)) {
+                    // Şifre doğru
+                    passwordError.style.display = 'none';
+                    passwordScreen.style.display = 'none';
+                    mainContent.style.display = 'block';
+                    initializeApp();
+                } else {
+                    // Şifre yanlış
+                    passwordError.style.display = 'block';
+                    passwordInput.value = '';
+                    passwordInput.focus();
+                }
+            }
+            
+            // Uygulamayı başlat
+            function initializeApp() {
+                if (Hls.isSupported()) {
+                    console.log('HLS.js destekleniyor');
+                } else if (modalVideoPlayer.canPlayType('application/vnd.apple.mpegurl')) {
+                    console.log('Native HLS (Safari) destekleniyor');
+                    isSafari = true;
+                } else {
+                    channelsContainer.innerHTML = `
+                        <div class="error-message">
+                            Tarayıcınız HLS formatını desteklemiyor. Lütfen Chrome, Firefox veya Edge gibi modern bir tarayıcı kullanın.
+                        </div>
+                    `;
+                    return;
+                }
+                
+                let allChannels = [];
+                let allGroups = [];
+                let activeGroup = 'Tüm Kanallar';
+                let darkMode = localStorage.getItem('darkMode') === 'true';
+                let globalOptions = {
+                    userAgent: null,
+                    referer: null
+                };
+                
+                // Tema ayarını uygula
+                function applyTheme() {
+                    if (darkMode) {
+                        document.body.classList.add('dark-mode');
+                        themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+                    } else {
+                        document.body.classList.remove('dark-mode');
+                        themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+                    }
+                }
+                
+                // Tema değiştirme
+                themeToggle.addEventListener('click', function() {
+                    darkMode = !darkMode;
+                    localStorage.setItem('darkMode', darkMode);
+                    applyTheme();
+                });
+                
+                // Başlangıç temasını uygula
+                applyTheme();
+                
+                // Kanal listesini yükle
+                fetch(m3uUrl)
+                    .then(response => {
+                        if (!response.ok) throw new Error('M3U dosyası yüklenemedi');
+                        return response.text();
+                    })
+                    .then(data => {
+                        allChannels = parseM3U(data);
+                        allGroups = getAllGroups(allChannels);
+                        displayGroupFilter(allGroups);
+                        displayChannels(allChannels);
+                        setupSearch();
+                    })
+                    .catch(error => {
+                        console.error('M3U yüklenirken hata oluştu:', error);
+                        channelsContainer.innerHTML = `
+                            <div class="error-message">
+                                Kanal listesi yüklenirken hata oluştu: ${error.message}<br>
+                                Lütfen M3U dosyasının URL'sini kontrol edin.
+                            </div>
+                        `;
+                    });
+                
+                // Modal'ı kapatma
+                closeModal.addEventListener('click', closeVideoModal);
+                
+                // ESC tuşuyla modal'ı kapatma
+                document.addEventListener('keydown', function(e) {
+                    if (e.key === 'Escape') {
+                        closeVideoModal();
+                    }
+                });
+                
+                // M3U dosyasını parse etme fonksiyonu (EXTVLCOPT desteği ile)
+                function parseM3U(content) {
+                    const channels = [];
+                    const lines = content.split('\n');
+                    let currentChannel = null;
+                    
+                    // Global ayarları sıfırla
+                    globalOptions = {
+                        userAgent: null,
+                        referer: null
+                    };
+
+                    for (let i = 0; i < lines.length; i++) {
+                        const line = lines[i].trim();
+                        
+                        // Global EXTVLCOPT direktiflerini yakala
+                        if (line.startsWith('#EXTVLCOPT:')) {
+                            const option = line.substring(11);
+                            if (option.startsWith('http-user-agent=')) {
+                                globalOptions.userAgent = option.substring(16);
+                            } else if (option.startsWith('http-referrer=')) {
+                                globalOptions.referer = option.substring(14);
+                            }
+                            continue;
+                        }
+                        
+                        if (line.startsWith('#EXTINF:')) {
+                            currentChannel = {
+                                name: line.split(',')[1] || 'Bilinmeyen Kanal',
+                                group: 'Genel',
+                                tvgName: '',
+                                logo: '',
+                                url: '',
+                                options: {
+                                    userAgent: globalOptions.userAgent,
+                                    referer: globalOptions.referer
+                                }
+                            };
+                            
+                            // EXTINF parametrelerini parse et
+                            const params = line.match(/([a-z-]+)="([^"]+)"/g) || [];
+                            params.forEach(param => {
+                                const [key, value] = param.split('=');
+                                const cleanKey = key.replace(/"/g, '');
+                                const cleanValue = value.replace(/"/g, '');
+                                
+                                if (cleanKey === 'tvg-name') currentChannel.tvgName = cleanValue;
+                                else if (cleanKey === 'tvg-logo') currentChannel.logo = cleanValue;
+                                else if (cleanKey === 'group-title') currentChannel.group = cleanValue;
+                            });
+                        } 
+                        else if (line && !line.startsWith('#') && currentChannel) {
+                            currentChannel.url = line;
+                            channels.push(currentChannel);
+                            currentChannel = null;
+                        }
+                    }
+                    
+                    return channels;
+                }
+                
+                // Tüm grupları çıkarma fonksiyonu
+                function getAllGroups(channels) {
+                    const groups = new Set();
+                    channels.forEach(channel => {
+                        if (channel.group) {
+                            groups.add(channel.group);
+                        }
+                    });
+                    return ['Tüm Kanallar', ...Array.from(groups).sort()];
+                }
+                
+                // Grup filtreleme butonlarını oluşturma
+                function displayGroupFilter(groups) {
+                    groupsFilter.innerHTML = '';
+                    
+                    groups.forEach(group => {
+                        const groupBtn = document.createElement('button');
+                        groupBtn.className = 'group-btn';
+                        groupBtn.textContent = group;
+                        if (group === activeGroup) {
+                            groupBtn.classList.add('active');
+                        }
+                        
+                        groupBtn.addEventListener('click', () => {
+                            activeGroup = group;
+                            document.querySelectorAll('.group-btn').forEach(btn => {
+                                btn.classList.remove('active');
+                            });
+                            groupBtn.classList.add('active');
+                            filterChannels();
+                        });
+                        
+                        groupsFilter.appendChild(groupBtn);
+                    });
+                }
+                
+                // Kanalları görüntüleme fonksiyonu
+                function displayChannels(channels) {
+                    if (channels.length === 0) {
+                        channelsContainer.innerHTML = `
+                            <div class="error-message">
+                                Gösterilecek kanal bulunamadı. Filtreleme kriterlerinize uygun kanal yok veya M3U dosyasında kanal bilgileri olmayabilir.
+                            </div>
+                        `;
+                        return;
+                    }
+                    
+                    channelsContainer.innerHTML = `
+                        <div class="channel-grid" id="channelGrid"></div>
+                    `;
+                    
+                    const channelGrid = document.getElementById('channelGrid');
+                    
+                    channels.forEach(channel => {
+                        const channelCard = document.createElement('div');
+                        channelCard.className = 'channel-card';
+                        channelCard.innerHTML = `
+                            <div class="channel-logo-container">
+                                <img src="${channel.logo || 'https://via.placeholder.com/220x140?text=No+Logo'}" 
+                                     alt="${channel.name}" 
+                                     class="channel-logo"
+                                     onerror="this.src='https://via.placeholder.com/220x140?text=No+Logo'">
+                            </div>
+                            <div class="channel-info">
+                                <div class="channel-name">${channel.name}</div>
+                                <div class="channel-group">${channel.group}</div>
+                            </div>
+                        `;
+                        
+                        channelCard.addEventListener('click', () => {
+                            openVideoModal(channel);
+                        });
+                        
+                        channelGrid.appendChild(channelCard);
+                    });
+                }
+                
+                // Arama fonksiyonlarını ayarla
+                function setupSearch() {
+                    searchInput.addEventListener('input', performSearch);
+                    searchBtn.addEventListener('click', performSearch);
+                }
+                
+                // Kanalları filtreleme fonksiyonu
+                function filterChannels() {
+                    const searchTerm = searchInput.value.toLowerCase().trim();
+                    
+                    let filteredChannels = allChannels;
+                    
+                    // Grup filtreleme
+                    if (activeGroup !== 'Tüm Kanallar') {
+                        filteredChannels = filteredChannels.filter(channel => channel.group === activeGroup);
+                    }
+                    
+                    // Arama filtreleme
+                    if (searchTerm !== '') {
+                        filteredChannels = filteredChannels.filter(channel => {
+                            return channel.name.toLowerCase().includes(searchTerm) || 
+                                   (channel.tvgName && channel.tvgName.toLowerCase().includes(searchTerm)) ||
+                                   channel.group.toLowerCase().includes(searchTerm);
+                        });
+                    }
+                    
+                    displayChannels(filteredChannels);
+                }
+                
+                // Arama yap
+                function performSearch() {
+                    filterChannels();
+                }
+                
+                // Modal'ı açma ve kanalı oynatma fonksiyonu
+                function openVideoModal(channel) {
+                    console.log('Opening channel:', channel.name);
+                    console.log('Channel options:', channel.options);
+                    
+                    // UI güncelleme
+                    modalChannelName.textContent = channel.name;
+                    modalChannelLogo.src = channel.logo || '';
+                    modalChannelLogo.alt = channel.name;
+                    modalChannelLogo.onerror = function() {
+                        this.src = 'https://via.placeholder.com/36x36?text=TV';
+                    };
+                    
+                    videoModal.classList.add('show');
+                    
+                    // Önceki kaynakları temizle
+                    cleanupPreviousStream();
+                    
+                    // Yeni kaynağı yükle
+                    if (Hls.isSupported()) {
+                        loadWithHls(channel.url, channel.options);
+                    } else if (isSafari) {
+                        loadWithNativeHls(channel.url, channel.options);
+                    } else {
+                        console.error('HLS desteklenmiyor');
+                        alert('Bu kanalı oynatmak için desteklenen bir tarayıcı kullanın');
+                    }
+                }
+                
+                // Önceki akışı temizle
+                function cleanupPreviousStream() {
+                    // Video elementini sıfırla
+                    modalVideoPlayer.pause();
+                    modalVideoPlayer.removeAttribute('src');
+                    modalVideoPlayer.load();
+                    
+                    // HLS instance'ını temizle
+                    if (hls) {
+                        hls.destroy();
+                        hls = null;
+                    }
+                }
+                
+                // HLS.js ile yükle (User-Agent ve Referer desteği ile)
+                function loadWithHls(url, options) {
+                    hls = new Hls({
+                        maxBufferLength: 30,
+                        maxMaxBufferLength: 600,
+                        maxBufferSize: 60 * 1000 * 1000,
+                        maxBufferHole: 5.0,
+                        enableWorker: true,
+                        lowLatencyMode: false,
+                        startLevel: -1, // Otomatik seviye seçimi
+                        maxFragLookUpTolerance: 0.25,
+                        manifestLoadingMaxRetry: 3,
+                        levelLoadingMaxRetry: 3,
+                        fragLoadingMaxRetry: 3,
+                        xhrSetup: function(xhr) {
+                            // User-Agent ve Referer başlıklarını ekle
+                            if (options.userAgent) {
+                                xhr.setRequestHeader('User-Agent', options.userAgent);
+                            }
+                            if (options.referer) {
+                                xhr.setRequestHeader('Referer', options.referer);
+                            }
+                        }
+                    });
+                    
+                    hls.on(Hls.Events.MEDIA_ATTACHED, function() {
+                        console.log('Medya bağlandı, kaynak yükleniyor...');
+                        hls.loadSource(url);
+                    });
+                    
+                    hls.on(Hls.Events.MANIFEST_PARSED, function(event, data) {
+                        console.log('Manifest yüklendi, çalınabilir seviyeler:', data.levels);
+                        modalVideoPlayer.play().catch(e => {
+                            console.error('Otomatik oynatma engellendi:', e);
+                        });
+                    });
+                    
+                    hls.on(Hls.Events.ERROR, function(event, data) {
+                        console.error('HLS Hatası:', data.type, data.details);
+                        
+                        if (data.fatal) {
+                            switch(data.type) {
+                                case Hls.ErrorTypes.NETWORK_ERROR:
+                                    console.error('Ağ hatası, yeniden deniyor...');
+                                    hls.startLoad();
+                                    break;
+                                case Hls.ErrorTypes.MEDIA_ERROR:
+                                    console.error('Medya hatası, kurtarılıyor...');
+                                    hls.recoverMediaError();
+                                    break;
+                                default:
+                                    console.error('Kurtarılamaz hata, HLS yok ediliyor...');
+                                    handlePlaybackError(url);
+                                    break;
+                            }
+                        }
+                    });
+                    
+                    hls.attachMedia(modalVideoPlayer);
+                }
+                
+                // Safari için native HLS desteği
+                function loadWithNativeHls(url, options) {
+                    // Safari'de başlık ekleme imkanı olmadığı için sadece URL'yi kullan
+                    modalVideoPlayer.src = url;
+                    
+                    const errorHandler = function(e) {
+                        console.error('Native HLS oynatma hatası:', e);
+                        modalVideoPlayer.removeEventListener('error', errorHandler);
+                        handlePlaybackError(url);
+                    };
+                    
+                    modalVideoPlayer.addEventListener('error', errorHandler);
+                    
+                    modalVideoPlayer.addEventListener('loadedmetadata', function() {
+                        modalVideoPlayer.play().catch(e => {
+                            console.error('Native HLS oynatma hatası:', e);
+                        });
+                    });
+                }
+                
+                // Oynatma hatası durumunda alternatif deneme
+                function handlePlaybackError(url) {
+                    console.log('Alternatif oynatma yöntemi deneniyor...');
+                    
+                    // HLS.js ile açılamadıysa, direkt video source olarak deneyelim
+                    if (!isSafari) {
+                        console.log('Direct video source deneniyor...');
+                        modalVideoPlayer.src = url;
+                        modalVideoPlayer.load();
+                        
+                        modalVideoPlayer.play().catch(e => {
+                            console.error('Direct source oynatma hatası:', e);
+                            alert('Kanal açılırken hata oluştu. Lütfen başka bir kanal deneyin.');
+                        });
+                    } else {
+                        alert('Kanal açılırken hata oluştu. Lütfen başka bir kanal deneyin.');
+                    }
+                }
+                
+                // Modal'ı kapatma fonksiyonu
+                function closeVideoModal() {
+                    videoModal.classList.remove('show');
+                    cleanupPreviousStream();
+                }
+            }
+        });
+    </script>
+</body>
+</html>

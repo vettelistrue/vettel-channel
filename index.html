@@ -446,6 +446,57 @@
             background-color: #000;
         }
 
+        /* Player Selection Styles */
+        .player-selection {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            padding: 1.5rem;
+            background-color: rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+            margin-top: 1rem;
+        }
+
+        .player-option {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.8rem 1rem;
+            border-radius: 8px;
+            background-color: rgba(255, 255, 255, 0.1);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .player-option:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .player-option.active {
+            background-color: #3498db;
+            color: white;
+        }
+
+        .player-icon {
+            font-size: 1.5rem;
+            width: 30px;
+            text-align: center;
+        }
+
+        .player-info {
+            flex-grow: 1;
+        }
+
+        .player-title {
+            font-weight: bold;
+            margin-bottom: 0.2rem;
+        }
+
+        .player-desc {
+            font-size: 0.8rem;
+            opacity: 0.8;
+        }
+
         /* Loading State */
         .loading-container {
             display: flex;
@@ -607,6 +658,44 @@
                 <div class="modal-video-container">
                     <video id="modalVideoPlayer" class="modal-video" controls></video>
                 </div>
+                <div class="player-selection" id="playerSelection">
+                    <div class="player-option active" data-player="hlsjs">
+                        <div class="player-icon">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                        <div class="player-info">
+                            <div class="player-title">HLS.js Player</div>
+                            <div class="player-desc">Tarayıcıda en iyi uyumluluk (önerilen)</div>
+                        </div>
+                    </div>
+                    <div class="player-option" data-player="native">
+                        <div class="player-icon">
+                            <i class="fas fa-desktop"></i>
+                        </div>
+                        <div class="player-info">
+                            <div class="player-title">HTML5 Player</div>
+                            <div class="player-desc">Safari ve bazı mobil cihazlar için</div>
+                        </div>
+                    </div>
+                    <div class="player-option" data-player="external">
+                        <div class="player-icon">
+                            <i class="fas fa-external-link-alt"></i>
+                        </div>
+                        <div class="player-info">
+                            <div class="player-title">Harici Player</div>
+                            <div class="player-desc">VLC veya diğer medya oynatıcılarda aç</div>
+                        </div>
+                    </div>
+                    <div class="player-option" data-player="direct">
+                        <div class="player-icon">
+                            <i class="fas fa-link"></i>
+                        </div>
+                        <div class="player-info">
+                            <div class="player-title">Direkt Link</div>
+                            <div class="player-desc">M3U8 bağlantısını kopyala</div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -632,6 +721,8 @@
             const searchBtn = document.getElementById('searchBtn');
             const groupsFilter = document.getElementById('groupsFilter');
             const themeToggle = document.getElementById('themeToggle');
+            const playerSelection = document.getElementById('playerSelection');
+            const playerOptions = document.querySelectorAll('.player-option');
             
             // M3U dosyasının URL'si
             const m3uUrl = 'https://raw.githubusercontent.com/vettelistrue/vettel-channel/refs/heads/main/vettelchannel.m3u';
@@ -642,6 +733,8 @@
             // HLS desteği kontrolü
             let hls = null;
             let isSafari = false;
+            let currentChannel = null;
+            let selectedPlayer = 'hlsjs';
             
             // Şifre kontrolü
             passwordSubmit.addEventListener('click', checkPassword);
@@ -727,6 +820,9 @@
                     referer: null
                 };
                 
+                // Player seçimini ayarla
+                setupPlayerSelection();
+                
                 // Tema ayarını uygula
                 function applyTheme() {
                     if (darkMode) {
@@ -780,6 +876,24 @@
                         closeVideoModal();
                     }
                 });
+                
+                // Player seçimini ayarla
+                function setupPlayerSelection() {
+                    playerOptions.forEach(option => {
+                        option.addEventListener('click', function() {
+                            // Tüm seçeneklerden active class'ını kaldır
+                            playerOptions.forEach(opt => opt.classList.remove('active'));
+                            // Tıklanan seçeneğe active class'ını ekle
+                            this.classList.add('active');
+                            selectedPlayer = this.dataset.player;
+                            
+                            // Eğer modal açıksa ve bir kanal seçiliyse, yeni player ile aç
+                            if (currentChannel && videoModal.classList.contains('show')) {
+                                playChannel(currentChannel);
+                            }
+                        });
+                    });
+                }
                 
                 // M3U dosyasını parse etme fonksiyonu (EXTVLCOPT desteği ile)
                 function parseM3U(content) {
@@ -955,8 +1069,7 @@
                 
                 // Modal'ı açma ve kanalı oynatma fonksiyonu
                 function openVideoModal(channel) {
-                    console.log('Opening channel:', channel.name);
-                    console.log('Channel options:', channel.options);
+                    currentChannel = channel;
                     
                     // UI güncelleme
                     modalChannelName.textContent = channel.name;
@@ -968,17 +1081,39 @@
                     
                     videoModal.classList.add('show');
                     
+                    // Kanalı seçilen player ile oynat
+                    playChannel(channel);
+                }
+                
+                // Kanalı seçilen player ile oynat
+                function playChannel(channel) {
                     // Önceki kaynakları temizle
                     cleanupPreviousStream();
                     
-                    // Yeni kaynağı yükle
-                    if (Hls.isSupported()) {
-                        loadWithHls(channel.url, channel.options);
-                    } else if (isSafari) {
-                        loadWithNativeHls(channel.url, channel.options);
-                    } else {
-                        console.error('HLS desteklenmiyor');
-                        alert('Bu kanalı oynatmak için desteklenen bir tarayıcı kullanın');
+                    switch(selectedPlayer) {
+                        case 'hlsjs':
+                            if (Hls.isSupported()) {
+                                loadWithHls(channel.url, channel.options);
+                            } else {
+                                alert('HLS.js desteklenmiyor. Başka bir player seçin.');
+                            }
+                            break;
+                            
+                        case 'native':
+                            if (isSafari || modalVideoPlayer.canPlayType('application/vnd.apple.mpegurl')) {
+                                loadWithNativeHls(channel.url, channel.options);
+                            } else {
+                                alert('Native HLS desteklenmiyor. Başka bir player seçin.');
+                            }
+                            break;
+                            
+                        case 'external':
+                            openWithExternalPlayer(channel.url);
+                            break;
+                            
+                        case 'direct':
+                            copyStreamUrl(channel.url);
+                            break;
                     }
                 }
                 
@@ -1077,20 +1212,49 @@
                     });
                 }
                 
+                // Harici player ile aç
+                function openWithExternalPlayer(url) {
+                    // VLC protokolü ile açmayı dene
+                    const vlcUrl = `vlc://${url}`;
+                    window.open(vlcUrl, '_blank');
+                    
+                    // Eğer açılmazsa kullanıcıya bilgi ver
+                    setTimeout(() => {
+                        if (!document.hasFocus()) {
+                            alert('Harici player açılamadı. URL kopyalandı: ' + url);
+                            copyToClipboard(url);
+                        }
+                    }, 500);
+                }
+                
+                // Direkt linki kopyala
+                function copyStreamUrl(url) {
+                    copyToClipboard(url);
+                    alert('M3U8 bağlantısı panoya kopyalandı:\n' + url);
+                }
+                
+                // Panoya kopyala yardımcı fonksiyonu
+                function copyToClipboard(text) {
+                    const textarea = document.createElement('textarea');
+                    textarea.value = text;
+                    document.body.appendChild(textarea);
+                    textarea.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(textarea);
+                }
+                
                 // Oynatma hatası durumunda alternatif deneme
                 function handlePlaybackError(url) {
                     console.log('Alternatif oynatma yöntemi deneniyor...');
                     
-                    // HLS.js ile açılamadıysa, direkt video source olarak deneyelim
-                    if (!isSafari) {
-                        console.log('Direct video source deneniyor...');
-                        modalVideoPlayer.src = url;
-                        modalVideoPlayer.load();
-                        
-                        modalVideoPlayer.play().catch(e => {
-                            console.error('Direct source oynatma hatası:', e);
-                            alert('Kanal açılırken hata oluştu. Lütfen başka bir kanal deneyin.');
-                        });
+                    // Hata durumunda bir sonraki player seçeneğini deneyelim
+                    const currentIndex = Array.from(playerOptions).findIndex(opt => opt.dataset.player === selectedPlayer);
+                    if (currentIndex < playerOptions.length - 1) {
+                        const nextPlayer = playerOptions[currentIndex + 1].dataset.player;
+                        playerOptions.forEach(opt => opt.classList.remove('active'));
+                        playerOptions[currentIndex + 1].classList.add('active');
+                        selectedPlayer = nextPlayer;
+                        playChannel(currentChannel);
                     } else {
                         alert('Kanal açılırken hata oluştu. Lütfen başka bir kanal deneyin.');
                     }
@@ -1100,6 +1264,7 @@
                 function closeVideoModal() {
                     videoModal.classList.remove('show');
                     cleanupPreviousStream();
+                    currentChannel = null;
                 }
             }
         });

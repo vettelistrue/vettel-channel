@@ -246,6 +246,7 @@
 
         .channel-info {
             padding: 1.2rem;
+            position: relative;
         }
 
         .channel-name {
@@ -255,6 +256,7 @@
             overflow: hidden;
             text-overflow: ellipsis;
             color: white;
+            padding-right: 20px;
         }
 
         .channel-group {
@@ -263,6 +265,39 @@
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
+        }
+
+        /* Durum göstergesi */
+        .channel-status {
+            position: absolute;
+            right: 15px;
+            top: 15px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: #95a5a6;
+        }
+
+        .channel-status.working {
+            background-color: #2ecc71;
+            box-shadow: 0 0 8px #2ecc71;
+        }
+
+        .channel-status.not-working {
+            background-color: #e74c3c;
+            box-shadow: 0 0 8px #e74c3c;
+        }
+
+        .channel-status.checking {
+            background-color: #f39c12;
+            box-shadow: 0 0 8px #f39c12;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.6; }
+            50% { opacity: 1; }
+            100% { opacity: 0.6; }
         }
 
         /* Modal Styles */
@@ -346,7 +381,7 @@
         .modal-video-container {
             width: 100%;
             position: relative;
-            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            padding-bottom: 56.25%;
         }
 
         .modal-video {
@@ -501,7 +536,7 @@
             const themeToggle = document.getElementById('themeToggle');
             
             // M3U dosyasının URL'si
-            const m3uUrl = 'vettelchannel.m3u';
+            const m3uUrl = 'https://raw.githubusercontent.com/vettelistrue/vettel-channel/refs/heads/main/vettelchannel.m3u';
             
             // HLS desteği kontrolü
             let hls = null;
@@ -559,6 +594,9 @@
                         allGroups = ['Tüm Kanallar', ...new Set(allChannels.map(ch => ch.group).filter(Boolean))];
                         renderGroups();
                         renderChannels(allChannels);
+                        
+                        // Tüm kanalların durumunu kontrol et
+                        checkAllChannelsStatus();
                     })
                     .catch(err => {
                         channelsContainer.innerHTML = `
@@ -582,7 +620,8 @@
                             current = {
                                 name: nameMatch ? nameMatch[1] : 'Bilinmeyen',
                                 group: groupMatch ? groupMatch[1] : 'Diğer',
-                                logo: logoMatch ? logoMatch[1] : ''
+                                logo: logoMatch ? logoMatch[1] : '',
+                                status: 'unknown'
                             };
                         } else if (line && !line.startsWith('#')) {
                             current.url = line;
@@ -590,6 +629,100 @@
                         }
                     }
                     return channels;
+                }
+
+                // Gelişmiş kanal durum kontrol fonksiyonu
+                function checkChannelStatus(channel) {
+                    return new Promise((resolve) => {
+                        channel.status = 'checking';
+                        updateChannelStatusUI(channel);
+
+                        // Hızlı kontrol için HEAD isteği
+                        fetch(channel.url, {
+                            method: 'HEAD',
+                            mode: 'no-cors',
+                            cache: 'no-cache'
+                        })
+                        .then(response => {
+                            // Başarılı yanıt alınırsa çalışıyor kabul et
+                            if (response.ok) {
+                                channel.status = 'working';
+                                resolve(true);
+                            } else {
+                                // HEAD başarısız olursa GET ile dene
+                                return checkWithGetRequest(channel);
+                            }
+                        })
+                        .catch(() => {
+                            // HEAD hatasında GET ile dene
+                            return checkWithGetRequest(channel);
+                        })
+                        .finally(() => {
+                            updateChannelStatusUI(channel);
+                        });
+                    });
+                }
+
+                // GET isteği ile daha detaylı kontrol
+                function checkWithGetRequest(channel) {
+                    return new Promise((resolve) => {
+                        const xhr = new XMLHttpRequest();
+                        xhr.open('GET', channel.url, true);
+                        xhr.timeout = 5000; // 5 saniye timeout
+                        xhr.onreadystatechange = function() {
+                            if (xhr.readyState === 2) { // HEADERS_RECEIVED
+                                if (xhr.status >= 200 && xhr.status < 400) {
+                                    channel.status = 'working';
+                                    xhr.abort();
+                                    resolve(true);
+                                } else {
+                                    channel.status = 'not-working';
+                                    xhr.abort();
+                                    resolve(false);
+                                }
+                            }
+                        };
+                        xhr.onerror = function() {
+                            channel.status = 'not-working';
+                            resolve(false);
+                        };
+                        xhr.ontimeout = function() {
+                            channel.status = 'not-working';
+                            resolve(false);
+                        };
+                        xhr.send();
+                    });
+                }
+
+                // Kanal durumunu UI'da güncelle
+                function updateChannelStatusUI(channel) {
+                    const card = document.querySelector(`.channel-card[data-url="${channel.url}"]`);
+                    if (card) {
+                        const statusElement = card.querySelector('.channel-status');
+                        if (statusElement) {
+                            statusElement.className = `channel-status ${channel.status}`;
+                        }
+                    }
+                }
+
+                // Tüm kanalların durumunu kontrol et
+                async function checkAllChannelsStatus() {
+                    const batchSize = 150; // Aynı anda kontrol edilecek kanal sayısı
+                    const delayBetweenBatches = 500; // Batch'ler arası bekleme süresi (ms)
+                    
+                    for (let i = 0; i < allChannels.length; i += batchSize) {
+                        const batch = allChannels.slice(i, i + batchSize);
+                        await Promise.all(batch.map(channel => 
+                            checkChannelStatus(channel)
+                        ));
+                        
+                        // UI'ı her batch'ten sonra güncelle
+                        renderChannels(allChannels);
+                        
+                        if (i + batchSize < allChannels.length) {
+                            await new Promise(resolve => setTimeout(resolve, delayBetweenBatches));
+                        }
+                    }
                 }
 
                 // Grup butonlarını oluştur
@@ -621,6 +754,7 @@
                         );
                     }
                     
+                    // Tüm filtrelenmiş kanalları göster
                     renderChannels(filtered);
                 }
 
@@ -635,6 +769,7 @@
                         return;
                     }
 
+                    // Tüm kanalları grid'e ekle
                     channelsContainer.innerHTML = `
                         <div class="channel-grid">
                             ${channelList.map(channel => `
@@ -645,12 +780,14 @@
                                     <div class="channel-info">
                                         <div class="channel-name">${channel.name}</div>
                                         <div class="channel-group">${channel.group}</div>
+                                        <div class="channel-status ${channel.status || 'unknown'}"></div>
                                     </div>
                                 </div>
                             `).join('')}
                         </div>
                     `;
 
+                    // Tıklama olaylarını ekle
                     document.querySelectorAll('.channel-card').forEach(card => {
                         card.addEventListener('click', () => {
                             const url = card.getAttribute('data-url');
@@ -677,13 +814,13 @@
                         hls.loadSource(url);
                         hls.attachMedia(modalVideoPlayer);
                         hls.on(Hls.Events.MANIFEST_PARSED, function() {
-                            modalVideoPlayer.play();
+                            modalVideoPlayer.play().catch(() => {});
                         });
                     } 
                     // Safari için native HLS desteği
                     else if (isSafari) {
                         modalVideoPlayer.src = url;
-                        modalVideoPlayer.play();
+                        modalVideoPlayer.play().catch(() => {});
                     }
                     
                     videoModal.classList.add('show');

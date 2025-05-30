@@ -529,10 +529,6 @@
                 let allGroups = [];
                 let activeGroup = 'Tüm Kanallar';
                 let darkMode = localStorage.getItem('darkMode') === 'true';
-                let globalOptions = {
-                    userAgent: null,
-                    referer: null
-                };
                 
                 // Tema ayarını uygula
                 function applyTheme() {
@@ -558,7 +554,7 @@
                 // Kanal listesini yükle
                 fetch(m3uUrl)
                     .then(response => {
-                                             if (!response.ok) throw new Error('M3U dosyası alınamadı');
+                        if (!response.ok) throw new Error('M3U dosyası alınamadı');
                         return response.text();
                     })
                     .then(data => {
@@ -619,12 +615,21 @@
 
                 // Kanal kartlarını oluştur
                 function renderChannels(channelList) {
+                    if (channelList.length === 0) {
+                        channelsContainer.innerHTML = `
+                            <div class="error-message">
+                                Sonuç bulunamadı
+                            </div>
+                        `;
+                        return;
+                    }
+
                     channelsContainer.innerHTML = `
                         <div class="channel-grid">
                             ${channelList.map(channel => `
                                 <div class="channel-card" data-url="${channel.url}" data-name="${channel.name}" data-logo="${channel.logo}">
                                     <div class="channel-logo-container">
-                                        <img src="${channel.logo}" alt="${channel.name}" class="channel-logo">
+                                        <img src="${channel.logo || 'https://via.placeholder.com/150x80?text=No+Logo'}" alt="${channel.name}" class="channel-logo" onerror="this.src='https://via.placeholder.com/150x80?text=No+Logo'">
                                     </div>
                                     <div class="channel-info">
                                         <div class="channel-name">${channel.name}</div>
@@ -642,7 +647,7 @@
                             const logo = card.getAttribute('data-logo');
 
                             modalChannelName.textContent = name;
-                            modalChannelLogo.src = logo;
+                            modalChannelLogo.src = logo || 'https://via.placeholder.com/150x80?text=No+Logo';
                             showModal(url);
                         });
                     });
@@ -654,15 +659,23 @@
                         hls.destroy();
                         hls = null;
                     }
+                    
+                    // HLS.js ile oynatma
                     if (Hls.isSupported()) {
                         hls = new Hls();
                         hls.loadSource(url);
                         hls.attachMedia(modalVideoPlayer);
-                    } else if (isSafari) {
+                        hls.on(Hls.Events.MANIFEST_PARSED, function() {
+                            modalVideoPlayer.play();
+                        });
+                    } 
+                    // Safari için native HLS desteği
+                    else if (isSafari) {
                         modalVideoPlayer.src = url;
+                        modalVideoPlayer.play();
                     }
+                    
                     videoModal.classList.add('show');
-                    modalVideoPlayer.play();
                 }
 
                 // Modal kapat
@@ -677,14 +690,31 @@
                 });
 
                 // Arama özelliği
-                searchBtn.addEventListener('click', () => {
+                function performSearch() {
                     const query = searchInput.value.toLowerCase().trim();
-                    const filtered = allChannels.filter(ch => ch.name.toLowerCase().includes(query));
+                    if (!query) {
+                        const filtered = activeGroup === 'Tüm Kanallar' ? allChannels : allChannels.filter(ch => ch.group === activeGroup);
+                        renderChannels(filtered);
+                        return;
+                    }
+                    
+                    const filtered = allChannels.filter(ch => 
+                        ch.name.toLowerCase().includes(query) || 
+                        (ch.group && ch.group.toLowerCase().includes(query))
+                    );
                     renderChannels(filtered);
+                }
+
+                searchBtn.addEventListener('click', performSearch);
+                
+                searchInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        performSearch();
+                    }
                 });
 
-                searchInput.addEventListener('input', () => {
-                    if (!searchInput.value) {
+                searchInput.addEventListener('input', function() {
+                    if (!searchInput.value.trim()) {
                         const filtered = activeGroup === 'Tüm Kanallar' ? allChannels : allChannels.filter(ch => ch.group === activeGroup);
                         renderChannels(filtered);
                     }

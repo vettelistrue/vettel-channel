@@ -558,356 +558,137 @@
                 // Kanal listesini yükle
                 fetch(m3uUrl)
                     .then(response => {
-                        if (!response.ok) throw new Error('M3U dosyası yüklenemedi');
+                                             if (!response.ok) throw new Error('M3U dosyası alınamadı');
                         return response.text();
                     })
                     .then(data => {
                         allChannels = parseM3U(data);
-                        allGroups = getAllGroups(allChannels);
-                        displayGroupFilter(allGroups);
-                        displayChannels(allChannels);
-                        setupSearch();
+                        allGroups = ['Tüm Kanallar', ...new Set(allChannels.map(ch => ch.group).filter(Boolean))];
+                        renderGroups();
+                        renderChannels(allChannels);
                     })
-                    .catch(error => {
-                        console.error('M3U yüklenirken hata oluştu:', error);
+                    .catch(err => {
                         channelsContainer.innerHTML = `
                             <div class="error-message">
-                                Kanal listesi yüklenirken hata oluştu: ${error.message}<br>
-                                Lütfen M3U dosyasının URL'sini kontrol edin.
+                                Kanal listesi yüklenemedi: ${err.message}
                             </div>
                         `;
                     });
-                
-                // Modal'ı kapatma
-                closeModal.addEventListener('click', closeVideoModal);
-                
-                // ESC tuşuyla modal'ı kapatma
-                document.addEventListener('keydown', function(e) {
-                    if (e.key === 'Escape') {
-                        closeVideoModal();
-                    }
-                });
-                
-                // M3U dosyasını parse etme fonksiyonu (EXTVLCOPT desteği ile)
-                function parseM3U(content) {
-                    const channels = [];
-                    const lines = content.split('\n');
-                    let currentChannel = null;
-                    
-                    // Global ayarları sıfırla
-                    globalOptions = {
-                        userAgent: null,
-                        referer: null
-                    };
 
-                    for (let i = 0; i < lines.length; i++) {
-                        const line = lines[i].trim();
-                        
-                        // Global EXTVLCOPT direktiflerini yakala
-                        if (line.startsWith('#EXTVLCOPT:')) {
-                            const option = line.substring(11);
-                            if (option.startsWith('http-user-agent=')) {
-                                globalOptions.userAgent = option.substring(16);
-                            } else if (option.startsWith('http-referrer=')) {
-                                globalOptions.referer = option.substring(14);
-                            }
-                            continue;
-                        }
-                        
-                        if (line.startsWith('#EXTINF:')) {
-                            currentChannel = {
-                                name: line.split(',')[1] || 'Bilinmeyen Kanal',
-                                group: 'Genel',
-                                tvgName: '',
-                                logo: '',
-                                url: '',
-                                options: {
-                                    userAgent: globalOptions.userAgent,
-                                    referer: globalOptions.referer
-                                }
+                // M3U verisini ayrıştır
+                function parseM3U(data) {
+                    const lines = data.split('\n');
+                    const channels = [];
+                    let current = {};
+                    for (let line of lines) {
+                        line = line.trim();
+                        if (line.startsWith('#EXTINF')) {
+                            const nameMatch = line.match(/,(.+)$/);
+                            const groupMatch = line.match(/group-title="([^"]+)"/);
+                            const logoMatch = line.match(/tvg-logo="([^"]+)"/);
+                            current = {
+                                name: nameMatch ? nameMatch[1] : 'Bilinmeyen',
+                                group: groupMatch ? groupMatch[1] : 'Diğer',
+                                logo: logoMatch ? logoMatch[1] : ''
                             };
-                            
-                            // EXTINF parametrelerini parse et
-                            const params = line.match(/([a-z-]+)="([^"]+)"/g) || [];
-                            params.forEach(param => {
-                                const [key, value] = param.split('=');
-                                const cleanKey = key.replace(/"/g, '');
-                                const cleanValue = value.replace(/"/g, '');
-                                
-                                if (cleanKey === 'tvg-name') currentChannel.tvgName = cleanValue;
-                                else if (cleanKey === 'tvg-logo') currentChannel.logo = cleanValue;
-                                else if (cleanKey === 'group-title') currentChannel.group = cleanValue;
-                            });
-                        } 
-                        else if (line && !line.startsWith('#') && currentChannel) {
-                            currentChannel.url = line;
-                            channels.push(currentChannel);
-                            currentChannel = null;
+                        } else if (line && !line.startsWith('#')) {
+                            current.url = line;
+                            channels.push({...current});
                         }
                     }
-                    
                     return channels;
                 }
-                
-                // Tüm grupları çıkarma fonksiyonu
-                function getAllGroups(channels) {
-                    const groups = new Set();
-                    channels.forEach(channel => {
-                        if (channel.group) {
-                            groups.add(channel.group);
-                        }
-                    });
-                    return ['Tüm Kanallar', ...Array.from(groups).sort()];
-                }
-                
-                // Grup filtreleme butonlarını oluşturma
-                function displayGroupFilter(groups) {
+
+                // Grup butonlarını oluştur
+                function renderGroups() {
                     groupsFilter.innerHTML = '';
-                    
-                    groups.forEach(group => {
-                        const groupBtn = document.createElement('button');
-                        groupBtn.className = 'group-btn';
-                        groupBtn.textContent = group;
-                        if (group === activeGroup) {
-                            groupBtn.classList.add('active');
-                        }
-                        
-                        groupBtn.addEventListener('click', () => {
+                    allGroups.forEach(group => {
+                        const btn = document.createElement('button');
+                        btn.className = 'group-btn';
+                        if (group === activeGroup) btn.classList.add('active');
+                        btn.textContent = group;
+                        btn.onclick = () => {
                             activeGroup = group;
-                            document.querySelectorAll('.group-btn').forEach(btn => {
-                                btn.classList.remove('active');
-                            });
-                            groupBtn.classList.add('active');
-                            filterChannels();
-                        });
-                        
-                        groupsFilter.appendChild(groupBtn);
+                            renderGroups();
+                            const filtered = group === 'Tüm Kanallar' ? allChannels : allChannels.filter(ch => ch.group === group);
+                            renderChannels(filtered);
+                        };
+                        groupsFilter.appendChild(btn);
                     });
                 }
-                
-                // Kanalları görüntüleme fonksiyonu
-                function displayChannels(channels) {
-                    if (channels.length === 0) {
-                        channelsContainer.innerHTML = `
-                            <div class="error-message">
-                                Gösterilecek kanal bulunamadı. Filtreleme kriterlerinize uygun kanal yok veya M3U dosyasında kanal bilgileri olmayabilir.
-                            </div>
-                        `;
-                        return;
-                    }
-                    
+
+                // Kanal kartlarını oluştur
+                function renderChannels(channelList) {
                     channelsContainer.innerHTML = `
-                        <div class="channel-grid" id="channelGrid"></div>
+                        <div class="channel-grid">
+                            ${channelList.map(channel => `
+                                <div class="channel-card" data-url="${channel.url}" data-name="${channel.name}" data-logo="${channel.logo}">
+                                    <div class="channel-logo-container">
+                                        <img src="${channel.logo}" alt="${channel.name}" class="channel-logo">
+                                    </div>
+                                    <div class="channel-info">
+                                        <div class="channel-name">${channel.name}</div>
+                                        <div class="channel-group">${channel.group}</div>
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
                     `;
-                    
-                    const channelGrid = document.getElementById('channelGrid');
-                    
-                    channels.forEach(channel => {
-                        const channelCard = document.createElement('div');
-                        channelCard.className = 'channel-card';
-                        channelCard.innerHTML = `
-                            <div class="channel-logo-container">
-                                <img src="${channel.logo || ''}" 
-                                     alt="${channel.name}" 
-                                     class="channel-logo"
-                                     onerror="this.src=''">
-                            </div>
-                            <div class="channel-info">
-                                <div class="channel-name">${channel.name}</div>
-                                <div class="channel-group">${channel.group}</div>
-                            </div>
-                        `;
-                        
-                        channelCard.addEventListener('click', () => {
-                            openVideoModal(channel);
+
+                    document.querySelectorAll('.channel-card').forEach(card => {
+                        card.addEventListener('click', () => {
+                            const url = card.getAttribute('data-url');
+                            const name = card.getAttribute('data-name');
+                            const logo = card.getAttribute('data-logo');
+
+                            modalChannelName.textContent = name;
+                            modalChannelLogo.src = logo;
+                            showModal(url);
                         });
-                        
-                        channelGrid.appendChild(channelCard);
                     });
                 }
-                
-                // Arama fonksiyonlarını ayarla
-                function setupSearch() {
-                    searchInput.addEventListener('input', performSearch);
-                    searchBtn.addEventListener('click', performSearch);
-                }
-                
-                // Kanalları filtreleme fonksiyonu
-                function filterChannels() {
-                    const searchTerm = searchInput.value.toLowerCase().trim();
-                    
-                    let filteredChannels = allChannels;
-                    
-                    // Grup filtreleme
-                    if (activeGroup !== 'Tüm Kanallar') {
-                        filteredChannels = filteredChannels.filter(channel => channel.group === activeGroup);
-                    }
-                    
-                    // Arama filtreleme
-                    if (searchTerm !== '') {
-                        filteredChannels = filteredChannels.filter(channel => {
-                            return channel.name.toLowerCase().includes(searchTerm) || 
-                                   (channel.tvgName && channel.tvgName.toLowerCase().includes(searchTerm)) ||
-                                   channel.group.toLowerCase().includes(searchTerm);
-                        });
-                    }
-                    
-                    displayChannels(filteredChannels);
-                }
-                
-                // Arama yap
-                function performSearch() {
-                    filterChannels();
-                }
-                
-                // Modal'ı açma ve kanalı oynatma fonksiyonu
-                function openVideoModal(channel) {
-                    console.log('Opening channel:', channel.name);
-                    console.log('Channel options:', channel.options);
-                    
-                    // UI güncelleme
-                    modalChannelName.textContent = channel.name;
-                    modalChannelLogo.src = channel.logo || '';
-                    modalChannelLogo.alt = channel.name;
-                    modalChannelLogo.onerror = function() {
-                        this.src = 'https://via.placeholder.com/36x36?text=TV';
-                    };
-                    
-                    videoModal.classList.add('show');
-                    
-                    // Önceki kaynakları temizle
-                    cleanupPreviousStream();
-                    
-                    // Yeni kaynağı yükle
-                    if (Hls.isSupported()) {
-                        loadWithHls(channel.url, channel.options);
-                    } else if (isSafari) {
-                        loadWithNativeHls(channel.url, channel.options);
-                    } else {
-                        console.error('HLS desteklenmiyor');
-                        alert('Bu kanalı oynatmak için desteklenen bir tarayıcı kullanın');
-                    }
-                }
-                
-                // Önceki akışı temizle
-                function cleanupPreviousStream() {
-                    // Video elementini sıfırla
-                    modalVideoPlayer.pause();
-                    modalVideoPlayer.removeAttribute('src');
-                    modalVideoPlayer.load();
-                    
-                    // HLS instance'ını temizle
+
+                // Modal aç
+                function showModal(url) {
                     if (hls) {
                         hls.destroy();
                         hls = null;
                     }
-                }
-                
-                // HLS.js ile yükle (User-Agent ve Referer desteği ile)
-                function loadWithHls(url, options) {
-                    hls = new Hls({
-                        maxBufferLength: 30,
-                        maxMaxBufferLength: 600,
-                        maxBufferSize: 60 * 1000 * 1000,
-                        maxBufferHole: 5.0,
-                        enableWorker: true,
-                        lowLatencyMode: false,
-                        startLevel: -1, // Otomatik seviye seçimi
-                        maxFragLookUpTolerance: 0.25,
-                        manifestLoadingMaxRetry: 3,
-                        levelLoadingMaxRetry: 3,
-                        fragLoadingMaxRetry: 3,
-                        xhrSetup: function(xhr) {
-                            // User-Agent ve Referer başlıklarını ekle
-                            if (options.userAgent) {
-                                xhr.setRequestHeader('User-Agent', options.userAgent);
-                            }
-                            if (options.referer) {
-                                xhr.setRequestHeader('Referer', options.referer);
-                            }
-                        }
-                    });
-                    
-                    hls.on(Hls.Events.MEDIA_ATTACHED, function() {
-                        console.log('Medya bağlandı, kaynak yükleniyor...');
+                    if (Hls.isSupported()) {
+                        hls = new Hls();
                         hls.loadSource(url);
-                    });
-                    
-                    hls.on(Hls.Events.MANIFEST_PARSED, function(event, data) {
-                        console.log('Manifest yüklendi, çalınabilir seviyeler:', data.levels);
-                        modalVideoPlayer.play().catch(e => {
-                            console.error('Otomatik oynatma engellendi:', e);
-                        });
-                    });
-                    
-                    hls.on(Hls.Events.ERROR, function(event, data) {
-                        console.error('HLS Hatası:', data.type, data.details);
-                        
-                        if (data.fatal) {
-                            switch(data.type) {
-                                case Hls.ErrorTypes.NETWORK_ERROR:
-                                    console.error('Ağ hatası, yeniden deniyor...');
-                                    hls.startLoad();
-                                    break;
-                                case Hls.ErrorTypes.MEDIA_ERROR:
-                                    console.error('Medya hatası, kurtarılıyor...');
-                                    hls.recoverMediaError();
-                                    break;
-                                default:
-                                    console.error('Kurtarılamaz hata, HLS yok ediliyor...');
-                                    handlePlaybackError(url);
-                                    break;
-                            }
-                        }
-                    });
-                    
-                    hls.attachMedia(modalVideoPlayer);
-                }
-                
-                // Safari için native HLS desteği
-                function loadWithNativeHls(url, options) {
-                    // Safari'de başlık ekleme imkanı olmadığı için sadece URL'yi kullan
-                    modalVideoPlayer.src = url;
-                    
-                    const errorHandler = function(e) {
-                        console.error('Native HLS oynatma hatası:', e);
-                        modalVideoPlayer.removeEventListener('error', errorHandler);
-                        handlePlaybackError(url);
-                    };
-                    
-                    modalVideoPlayer.addEventListener('error', errorHandler);
-                    
-                    modalVideoPlayer.addEventListener('loadedmetadata', function() {
-                        modalVideoPlayer.play().catch(e => {
-                            console.error('Native HLS oynatma hatası:', e);
-                        });
-                    });
-                }
-                
-                // Oynatma hatası durumunda alternatif deneme
-                function handlePlaybackError(url) {
-                    console.log('Alternatif oynatma yöntemi deneniyor...');
-                    
-                    // HLS.js ile açılamadıysa, direkt video source olarak deneyelim
-                    if (!isSafari) {
-                        console.log('Direct video source deneniyor...');
+                        hls.attachMedia(modalVideoPlayer);
+                    } else if (isSafari) {
                         modalVideoPlayer.src = url;
-                        modalVideoPlayer.load();
-                        
-                        modalVideoPlayer.play().catch(e => {
-                            console.error('Direct source oynatma hatası:', e);
-                            alert('Kanal açılırken hata oluştu. Lütfen başka bir kanal deneyin.');
-                        });
-                    } else {
-                        alert('Kanal açılırken hata oluştu. Lütfen başka bir kanal deneyin.');
                     }
+                    videoModal.classList.add('show');
+                    modalVideoPlayer.play();
                 }
-                
-                // Modal'ı kapatma fonksiyonu
-                function closeVideoModal() {
+
+                // Modal kapat
+                closeModal.addEventListener('click', () => {
                     videoModal.classList.remove('show');
-                    cleanupPreviousStream();
-                }
+                    modalVideoPlayer.pause();
+                    modalVideoPlayer.src = '';
+                    if (hls) {
+                        hls.destroy();
+                        hls = null;
+                    }
+                });
+
+                // Arama özelliği
+                searchBtn.addEventListener('click', () => {
+                    const query = searchInput.value.toLowerCase().trim();
+                    const filtered = allChannels.filter(ch => ch.name.toLowerCase().includes(query));
+                    renderChannels(filtered);
+                });
+
+                searchInput.addEventListener('input', () => {
+                    if (!searchInput.value) {
+                        const filtered = activeGroup === 'Tüm Kanallar' ? allChannels : allChannels.filter(ch => ch.group === activeGroup);
+                        renderChannels(filtered);
+                    }
+                });
             }
         });
     </script>

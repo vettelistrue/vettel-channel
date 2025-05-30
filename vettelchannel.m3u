@@ -84,7 +84,7 @@ https://tv1.arectv30.sbs/live/viasathistory.m3u8
 #EXTINF:-1 tvg-name="A SPOR" tvg-id="" tvg-logo="https://i.ibb.co/rwnrgFV/a-spor.png" group-title="🏅 Spor",A SPOR
 https://rnttwmjcin.turknet.ercdn.net/lcpmvefbyo/aspor/aspor_1080p.m3u8
 #EXTINF:-1 tvg-name="TRT SPOR" tvg-id="" tvg-logo="https://i.ibb.co/WxD4PLG/trt-spor.png" group-title="🏅 Spor",TRT SPOR
-https://trt.daioncdn.net/trtspor/master.m3u8?app=web
+https://217.30.11.74/e/157.m3u8
 #EXTINF:-1 tvg-name="TRT SPOR YILDIZ" tvg-id="" tvg-logo="https://i.ibb.co/YRgKcDn/trt-spor-yildiz.png" group-title="🏅 Spor",TRT SPOR YILDIZ
 https://tv-trtspor2.medya.trt.com.tr/master.m3u8
 #EXTINF:-1 tvg-name="HT SPOR" tvg-id="" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTY7GhcE-nEzPhdZ2QsYO005rW8cQuBC9o6nQ&s" group-title="🏅 Spor",HT SPOR

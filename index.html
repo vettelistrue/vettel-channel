@@ -77,75 +77,6 @@
         }
 
         /* Password Screen Styles */
-        .password-screen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-            backdrop-filter: blur(5px);
-        }
-
-        .password-container {
-            background-color: rgba(0, 0, 0, 0.8);
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-            max-width: 400px;
-            width: 90%;
-            text-align: center;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .password-logo {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            color: #3498db;
-        }
-
-        .password-title {
-            font-size: 1.5rem;
-            margin-bottom: 1.5rem;
-            color: white;
-        }
-
-        .password-input {
-            width: 100%;
-            padding: 0.8rem;
-            margin-bottom: 1rem;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 5px;
-            font-size: 1rem;
-            background-color: rgba(0, 0, 0, 0.5);
-            color: white;
-        }
-
-        .password-submit {
-            width: 100%;
-            padding: 0.8rem;
-            background-color: #3498db;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        .password-submit:hover {
-            background-color: #2980b9;
-        }
-
-        .password-error {
-            color: #e74c3c;
-            margin-top: 0.5rem;
-            font-size: 0.9rem;
-            display: none;
-        }
 
         .contact-support {
             position: absolute;
@@ -547,20 +478,7 @@
     </style>
 </head>
 <body>
-    <!-- Password Screen -->
-    <div class="password-screen" id="passwordScreen">
-        <div class="password-container">
-            <div class="password-logo">
-                <i class="fas fa-tv"></i>
-            </div>
-            <h2 class="password-title">Vettel Channel</h2>
-            <input type="password" class="password-input" id="passwordInput" placeholder="Şifreyi girin">
-            <button class="password-submit" id="passwordSubmit">Giriş Yap</button>
-            <div class="password-error" id="passwordError">Hatalı şifre! Lütfen tekrar deneyin.</div>
-            <a href="sifre.html" class="contact-support" target="_blank">
-                <i class="fas fa-key"></i> Şifre için iletişim
-            </a>
-        </div>
+ 
     </div>
 
     <!-- Main Content (Hidden until password is entered) -->

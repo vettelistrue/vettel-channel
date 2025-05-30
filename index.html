@@ -6,7 +6,6 @@
     <title>Vettel Channel</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
-
     <style>
         :root {
             --primary-light: #2c3e50;
@@ -74,24 +73,6 @@
             background-attachment: fixed;
             background-blend-mode: overlay;
             background-color: rgba(0, 0, 0, 0.7);
-        }
-
-        /* Password Screen Styles */
-
-        .contact-support {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            color: #3498db;
-            text-decoration: none;
-            font-size: 0.9rem;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        .contact-support:hover {
-            text-decoration: underline;
         }
 
         /* Navbar Styles */
@@ -432,9 +413,6 @@
             .channel-logo-container {
                 height: 120px;
             }
-            
-
-            }
         }
 
         @media (max-width: 576px) {
@@ -458,65 +436,51 @@
             .modal-channel-name {
                 font-size: 1rem;
             }
-            
-      
-            
-            .contact-support {
-                top: 10px;
-                right: 10px;
-                font-size: 0.8rem;
-            }
         }
     </style>
 </head>
 <body>
- 
-    </div>
-
-    
-    <div id="mainContent" style="display: none;">
-        <!-- Navbar -->
-        <nav class="navbar">
-            <div class="logo">
-                <i class="fas fa-tv"></i>
-                <span>Vettel Channel</span>
-            </div>
-            
-            <div class="search-container">
-                <input type="text" class="search-input" id="searchInput" placeholder="Kanal ara...">
-                <button class="search-btn" id="searchBtn">
-                    <i class="fas fa-search"></i>
-                </button>
-            </div>
-            
-            <button class="theme-toggle" id="themeToggle">
-                <i class="fas fa-moon"></i>
-            </button>
-        </nav>
-
-        <!-- Main Content -->
-        <div class="container">
-            <div id="groupsFilter" class="group-filter"></div>
-            <div id="channelsContainer">
-                <div class="loading-container">
-                    <div class="loading-spinner"></div>
-                </div>
-            </div>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">
+            <i class="fas fa-tv"></i>
+            <span>Vettel Channel</span>
         </div>
         
-        <!-- Video Modal -->
-        <div class="modal" id="videoModal">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <div class="modal-channel-info">
-                        <img id="modalChannelLogo" src="" alt="" class="modal-channel-logo">
-                        <span id="modalChannelName">Kanal Yükleniyor...</span>
-                    </div>
-                    <button class="close-modal" id="closeModal">&times;</button>
+        <div class="search-container">
+            <input type="text" class="search-input" id="searchInput" placeholder="Kanal ara...">
+            <button class="search-btn" id="searchBtn">
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
+        
+        <button class="theme-toggle" id="themeToggle">
+            <i class="fas fa-moon"></i>
+        </button>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div id="groupsFilter" class="group-filter"></div>
+        <div id="channelsContainer">
+            <div class="loading-container">
+                <div class="loading-spinner"></div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Video Modal -->
+    <div class="modal" id="videoModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-channel-info">
+                    <img id="modalChannelLogo" src="" alt="" class="modal-channel-logo">
+                    <span id="modalChannelName">Kanal Yükleniyor...</span>
                 </div>
-                <div class="modal-video-container">
-                    <video id="modalVideoPlayer" class="modal-video" controls></video>
-                </div>
+                <button class="close-modal" id="closeModal">&times;</button>
+            </div>
+            <div class="modal-video-container">
+                <video id="modalVideoPlayer" class="modal-video" controls></video>
             </div>
         </div>
     </div>
@@ -524,10 +488,6 @@
     <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-           
-      
-            const mainContent = document.getElementById('mainContent');
-            
             // Main app elements
             const channelsContainer = document.getElementById('channelsContainer');
             const videoModal = document.getElementById('videoModal');
@@ -541,27 +501,15 @@
             const themeToggle = document.getElementById('themeToggle');
             
             // M3U dosyasının URL'si
-            const m3uUrl = 'https://raw.githubusercontent.com/vettelistrue/vettel-channel/refs/heads/main/vettelchannel.m3u';
-            
-          
+            const m3uUrl = 'vettelchannel.m3u';
             
             // HLS desteği kontrolü
             let hls = null;
             let isSafari = false;
             
-          
-                }
-            });
-            
- 
-   ';
-            });
-            
-            // Şifreleri dosyadan yükleme fonksiyonu
-
-            }
-            
             // Uygulamayı başlat
+            initializeApp();
+            
             function initializeApp() {
                 if (Hls.isSupported()) {
                     console.log('HLS.js destekleniyor');
@@ -759,10 +707,10 @@
                         channelCard.className = 'channel-card';
                         channelCard.innerHTML = `
                             <div class="channel-logo-container">
-                                <img src="${channel.logo || ''}" 
+                                <img src="${channel.logo || 'https://via.placeholder.com/220x140?text=No+Logo'}" 
                                      alt="${channel.name}" 
                                      class="channel-logo"
-                                     onerror="this.src=''">
+                                     onerror="this.src='https://via.placeholder.com/220x140?text=No+Logo'">
                             </div>
                             <div class="channel-info">
                                 <div class="channel-name">${channel.name}</div>

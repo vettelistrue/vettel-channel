@@ -97,30 +97,24 @@ https://tjktv-live.tjk.org/tjktv2/tjktv2.m3u8
 https://r14.af91.workers.dev/list/yayinnbatv.m3u8
 #EXTINF:-1 tvg-name="beIN SPORTS HABER" tvg-id="" tvg-logo="https://i.imgur.com/QWo0x7S.jpg" group-title="⚽ beIN Sports",beIN SPORTS HABER
 https://tinyurl.com/SyndraxicBsHaberHD
-#EXTINF:-1 tvg-name="beIN SPORTS 1 [A] [4K]" tvg-id="Beinsports.tr" tvg-logo="https://raw.githubusercontent.com/pigzillaaaaa/iptv-scraper/main/logos/bein-sports-1.png" group-title="⚽ beIN Sports",beIN SPORTS 1 [A] [4K]
-https://testingvettel.ct.ws/m3u8-viewer.php?url=https://sakui.global.ssl.fastly.net/ahmetgaya?id=2113462398
-#EXTINF:-1 tvg-name="beIN SPORTS 1 [SELCUKSPORTS HD]" tvg-id="Beinsports.tr" tvg-logo="https://raw.githubusercontent.com/pigzillaaaaa/iptv-scraper/main/logos/bein-sports-1.png" group-title="⚽ beIN Sports",beIN SPORTS 1 [SELCUKSPORTS HD]
-https://alpha.cf-worker-8cebbdb0bfdc3f.workers.dev/live/selcukbeinsports1/playlist.m3u8
-#EXTINF:-1 tvg-name="beIN SPORTS 1 [B] [FullHD]" tvg-id="Beinsports.tr" tvg-logo="https://raw.githubusercontent.com/pigzillaaaaa/iptv-scraper/main/logos/bein-sports-1.png" group-title="⚽ beIN Sports",beIN SPORTS 1 [B] [FullHD]
-https://qmaalhy7acgxwhm.ngolpdkyoctjcddxshli469r.org/sunshine/DV9cjBK9A3yV3ddTvG-vDkNvRq5kljEsS4OljOr2iMtghX_29u-aDyxPazObZvvDQXfaozH1ycFzmNgCNbYYmJ8ryqtpVERO35Y_p7bbfBNLxZKBw7Rda9QaePVQrOMp1ZikeRyXO3LezbDrX9PXAqaxOIy9chWzgXsy1LyW0kI/hls/index.m3u8
+#EXTINF:-1 tvg-name="beIN SPORTS 1 [A]" tvg-id="Beinsports.tr" tvg-logo="https://raw.githubusercontent.com/pigzillaaaaa/iptv-scraper/main/logos/bein-sports-1.png" group-title="⚽ beIN Sports",beIN SPORTS 1 [A]
+https://test.dreamboxserver.net/Bein-Sport-1-FHD/tracks-v1a1/mono.m3u8
+#EXTINF:-1 tvg-name="beIN SPORTS 1 [B]" tvg-id="Beinsports.tr" tvg-logo="https://raw.githubusercontent.com/pigzillaaaaa/iptv-scraper/main/logos/bein-sports-1.png" group-title="⚽ beIN Sports",beIN SPORTS 1 [B]
+https://test.dreamboxserver.net/Bein-Sport-1-HD/tracks-v1a1/mono.m3u8
 #EXTINF:-1 tvg-name="beIN SPORTS 1 [C] [720p]" tvg-id="Beinsports.tr" tvg-logo="https://raw.githubusercontent.com/pigzillaaaaa/iptv-scraper/main/logos/bein-sports-1.png" group-title="⚽ beIN Sports",beIN SPORTS 1 [C] [720p]
 https://p2zgpjpzhpu30th994bn1bknnekjv0.top/cek2.m3u8?u=https://nxn4.xyz/cdn/bein-sports-1.css&bas=https://nxn4.xyz/cdn/
 #EXTINF:-1 tvg-name="beIN SPORTS 1 [D]" tvg-id="Beinsports.tr" tvg-logo="https://raw.githubusercontent.com/pigzillaaaaa/iptv-scraper/main/logos/bein-sports-1.png" group-title="⚽ beIN Sports",beIN SPORTS 1 [D]
 https://qmaalhy7acgxwhm.ngolpdkyoctjcddxshli469r.org/sunshine/i11NXCGgPBHCeTUXRSHI2hZD2xMPtG0f8dc9364NihhFZMFP-CrpmN6QKgAzS6j2OMoiEHt_OfzrhJrbzAmk_p4cbLR0IgEZrstE85wKjZimEbb9AY1bPz3ZQbprsvmnwSqWfvRJlQxFNTEmOCsSpu_X7kdQbzL4Owgx6A56z6A/hls/index.m3u8
-#EXTINF:-1 tvg-name="beIN SPORTS 1 [E] [480p]" tvg-id="Beinsports.tr" tvg-logo="https://raw.githubusercontent.com/pigzillaaaaa/iptv-scraper/main/logos/bein-sports-1.png" group-title="⚽ beIN Sports",beIN SPORTS 1 [E] [480p]
-https://td3wb1bchdvsahp.ngolpdkyoctjcddxshli469r.org/sunshine/pXid5OXUHqOF54fiTX0dsTLF-F4EjHy9ltIAWvSx9upKyvylFjfjCxXEAB5SsWQ1LCTZfhyWsiblz9OtycRAuk53G6fmKvXU68IVXWyX-V62dPEmXQ3VGSbJ5KKTCTR0zERLu_v6MJfk6IzJOSdrBntv3yo-zO54EF64F8k4tAo/hls/index.m3u8
-#EXTINF:-1 tvg-name="beIN SPORTS 1 [F]" tvg-id="Beinsports.tr" tvg-logo="https://raw.githubusercontent.com/pigzillaaaaa/iptv-scraper/main/logos/bein-sports-1.png" group-title="⚽ beIN Sports",beIN SPORTS 1 [F]
-http://supersonictv.live:8080/771235/786060/86262
 #EXTINF:-1 tvg-name="BeIN SPORTS 2 [A]" tvg-id="" tvg-logo="https://raw.githubusercontent.com/pigzillaaaaa/iptv-scraper/main/logos/bein-sports-2.png" group-title="⚽ beIN Sports",BeIN SPORTS 2 [A]
-https://lll.mevzuhls35.cfd/yayinb2.m3u8
+https://test.dreamboxserver.net/Bein-Sport-2-FHD/tracks-v1a1/mono.m3u8
 #EXTINF:-1 tvg-name="beIN SPORTS 2 [B]" tvg-id="148" tvg-logo="https://raw.githubusercontent.com/pigzillaaaaa/iptv-scraper/main/logos/bein-sports-2.png" group-title="⚽ beIN Sports",beIN SPORTS 2 [B]
-https://r14.af91.workers.dev/static/bs2.m3u8
+https://test.dreamboxserver.net/Bein-Sport-2-HD/tracks-v1a1/mono.m3u8
 #EXTINF:-1 tvg-name="beIN SPORTS 3 [A]" tvg-id="" tvg-logo="https://raw.githubusercontent.com/pigzillaaaaa/iptv-scraper/main/logos/bein-sports-3.png" group-title="⚽ beIN Sports",beIN SPORTS 3 [A]
-https://e0.4928d54d950ee70q5.lat/yayinb3.m3u8
+https://test.dreamboxserver.net/Bein-Sport-3-HD/tracks-v1a1/mono.m3u8
 #EXTINF:-1 tvg-name="beIN SPORTS 3 [B]" tvg-id="147" tvg-logo="https://raw.githubusercontent.com/pigzillaaaaa/iptv-scraper/main/logos/bein-sports-3.png" group-title="⚽ beIN Sports",beIN SPORTS 3 [B]
-https://r14.af91.workers.dev/static/bs3.m3u8
+https://test.dreamboxserver.net/Bein-Sport-3-FHD/tracks-v1a1/mono.m3u8
 #EXTINF:-1 tvg-name="beIN SPORTS 4 [A]" tvg-id="" tvg-logo="https://raw.githubusercontent.com/pigzillaaaaa/iptv-scraper/main/logos/bein-sports-4.png" group-title="⚽ beIN Sports",beIN SPORTS 4 [A]
-https://lll.mevzuhls35.cfd/yayinb4.m3u8
+https://test.dreamboxserver.net/Bein-Sport-4-HD/tracks-v1a1/mono.m3u8
 #EXTINF:-1 tvg-name="beIN SPORTS 4 [B]" tvg-id="146" tvg-logo="https://raw.githubusercontent.com/pigzillaaaaa/iptv-scraper/main/logos/bein-sports-4.png" group-title="⚽ beIN Sports",beIN SPORTS 4 [B]
 https://r14.af91.workers.dev/static/bs4.m3u8
 #EXTINF:-1 tvg-name="BeIN SPORTS 5" tvg-id="" tvg-logo="https://mediacms01.digiturkplay.com/channel_logo/beIN_SPORTS5_250x150.png" group-title="⚽ beIN Sports",BeIN SPORTS 5
@@ -130,13 +124,13 @@ https://lll.mevzuhls35.cfd/yayinb5.m3u8
 #EXTINF:-1 tvg-name="beIN SPORTS 5 [C]" tvg-id="" tvg-logo="https://mediacms01.digiturkplay.com/channel_logo/beIN_SPORTS5_250x150.png" group-title="⚽ beIN Sports",beIN SPORTS 5 [C]
 https://r14.af91.workers.dev/static/bs5.m3u8
 #EXTINF:-1 tvg-name="beIN SPORTS MAX 1 [HD]" tvg-id="BeinsportsMax.tr" tvg-logo="https://mediacms01.digiturkplay.com/channel_logo/bein_sports_yeni_MAX_1_250x150_.png" group-title="⚽ beIN Sports",beIN SPORTS MAX 1 [HD]
-https://tv1.arectv30.sbs/live/bm1.m3u8
+https://test.dreamboxserver.net/Bein-Sport-Max-1-HD/tracks-v1a1/mono.m3u8
 #EXTINF:-1 tvg-name="beIN SPORTS MAX 2 [HD]" tvg-id="BeinsportsMax2.tr" tvg-logo="https://mediacms01.digiturkplay.com/channel_logo/bein_sports_yeni_MAX_2_250x150_.png" group-title="⚽ beIN Sports",beIN SPORTS MAX 2 [HD]
-https://tv1.arectv30.sbs/live/bm2.m3u8
+https://test.dreamboxserver.net/Bein-Sport-Max-2-HD/tracks-v1a1/mono.m3u8
 #EXTINF:-1 tvg-name="S SPORT" tvg-id="" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0nhm9L4I63-p2z0Cla6neBAz1ZJ1X4go6QQ&s" group-title="🏋️ S-Sport / EuroSport",S SPORT
-https://bcovlive-a.akamaihd.net/540fcb034b144b848e7ff887f61a293a/eu-central-1/6415845530001/profile_0/chunklist.m3u8
+https://test.dreamboxserver.net/ssport1/tracks-v1a1/mono.m3u8
 #EXTINF:-1 tvg-name="S SPORT-2" tvg-id="" tvg-logo="https://static.ssportplus.com/wp-content/uploads/2024/03/S-Sport-2-logo-1.png" group-title="🏋️ S-Sport / EuroSport",S SPORT-2
-https://bcovlive-a.akamaihd.net/29c60f23ea4840ba8726925a77fcfd0b/eu-central-1/6415845530001/profile_0/chunklist.m3u8
+https://test.dreamboxserver.net/ssport2/tracks-v1a1/mono.m3u8
 #EXTINF:-1 tvg-name="S-SPORT+1" tvg-id="" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Ssport-plus-.png/220px-Ssport-plus-.png" group-title="🏋️ S-Sport / EuroSport",S-SPORT+1
 https://tv1.arectv30.sbs/live/pl1.m3u8
 #EXTINF:-1 tvg-name="S-SPORT+2" tvg-id="" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Ssport-plus-.png/220px-Ssport-plus-.png" group-title="🏋️ S-Sport / EuroSport",S-SPORT+2

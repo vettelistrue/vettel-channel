@@ -707,10 +707,10 @@
                         channelCard.className = 'channel-card';
                         channelCard.innerHTML = `
                             <div class="channel-logo-container">
-                                <img src="${channel.logo || 'https://via.placeholder.com/220x140?text=No+Logo'}" 
+                                <img src="${channel.logo || ''}" 
                                      alt="${channel.name}" 
                                      class="channel-logo"
-                                     onerror="this.src='https://via.placeholder.com/220x140?text=No+Logo'">
+                                     onerror="this.src=''">
                             </div>
                             <div class="channel-info">
                                 <div class="channel-name">${channel.name}</div>

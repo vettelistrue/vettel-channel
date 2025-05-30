@@ -433,12 +433,7 @@
                 height: 120px;
             }
             
-            .password-container {
-                padding: 1.5rem;
-            }
-            
-            .password-title {
-                font-size: 1.3rem;
+
             }
         }
 
@@ -464,10 +459,7 @@
                 font-size: 1rem;
             }
             
-            .password-container {
-                padding: 1rem;
-                width: 95%;
-            }
+      
             
             .contact-support {
                 top: 10px;
@@ -481,7 +473,7 @@
  
     </div>
 
-    <!-- Main Content (Hidden until password is entered) -->
+    
     <div id="mainContent" style="display: none;">
         <!-- Navbar -->
         <nav class="navbar">
@@ -532,11 +524,8 @@
     <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Password elements
-            const passwordScreen = document.getElementById('passwordScreen');
-            const passwordInput = document.getElementById('passwordInput');
-            const passwordSubmit = document.getElementById('passwordSubmit');
-            const passwordError = document.getElementById('passwordError');
+           
+      
             const mainContent = document.getElementById('mainContent');
             
             // Main app elements
@@ -554,70 +543,22 @@
             // M3U dosyasının URL'si
             const m3uUrl = 'https://raw.githubusercontent.com/vettelistrue/vettel-channel/refs/heads/main/vettelchannel.m3u';
             
-            // Şifrelerin bulunduğu dosya
-            const passwordsUrl = 'sifreler.txt';
+          
             
             // HLS desteği kontrolü
             let hls = null;
             let isSafari = false;
             
-            // Şifre kontrolü
-            passwordSubmit.addEventListener('click', checkPassword);
-            passwordInput.addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') {
-                    checkPassword();
+          
                 }
             });
             
-            // Şifreleri yükle ve şifre kontrol fonksiyonunu çalıştır
-            loadPasswords().then(validPasswords => {
-                window.validPasswords = validPasswords;
-            }).catch(error => {
-                console.error('Şifreler yüklenirken hata oluştu:', error);
-                passwordError.textContent = 'Şifreler yüklenirken hata oluştu. Lütfen sayfayı yenileyin.';
-                passwordError.style.display = 'block';
+ 
+   ';
             });
             
             // Şifreleri dosyadan yükleme fonksiyonu
-            async function loadPasswords() {
-                try {
-                    const response = await fetch(passwordsUrl);
-                    if (!response.ok) throw new Error('Şifre dosyası yüklenemedi');
-                    const text = await response.text();
-                    
-                    // Her satırı bir şifre olarak al ve boş satırları filtrele
-                    const passwords = text.split('\n')
-                        .map(line => line.trim())
-                        .filter(line => line.length > 0);
-                    
-                    if (passwords.length === 0) {
-                        throw new Error('Şifre dosyası boş veya geçersiz format');
-                    }
-                    
-                    return passwords;
-                } catch (error) {
-                    console.error('Şifreler yüklenirken hata:', error);
-                    // Varsayılan şifrelerle devam et
-                    return ['vettel', '1234', 'password'];
-                }
-            }
-            
-            // Şifre kontrol fonksiyonu
-            function checkPassword() {
-                const enteredPassword = passwordInput.value.trim();
-                
-                if (window.validPasswords && window.validPasswords.includes(enteredPassword)) {
-                    // Şifre doğru
-                    passwordError.style.display = 'none';
-                    passwordScreen.style.display = 'none';
-                    mainContent.style.display = 'block';
-                    initializeApp();
-                } else {
-                    // Şifre yanlış
-                    passwordError.style.display = 'block';
-                    passwordInput.value = '';
-                    passwordInput.focus();
-                }
+
             }
             
             // Uygulamayı başlat

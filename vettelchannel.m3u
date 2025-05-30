@@ -141,14 +141,26 @@ https://tv1.arectv30.sbs/live/pl3.m3u8
 https://tv1.arectv30.sbs/live/euro1.m3u8
 #EXTINF:-1 tvg-name="EuroSport 2" tvg-id="" tvg-logo="https://image.discovery.indazn.com/ca/v2/ca/image?id=d23wpwoe2km11q8yrkdt1vne0_image-header_pDach_1661948775000&quality=70" group-title="🏋️ S-Sport / EuroSport",EuroSport 2
 https://tv1.arectv30.sbs/live/euro2.m3u8
-#EXTINF:-1 tvg-name="TİVİBU SPOR HD" tvg-id="" tvg-logo="https://yt3.googleusercontent.com/VfKm_ajwsvkrsG4O6-5m1-LBAo8mgiAz4htzprv1zcF5liZ1Zgz5ANNbU_PYI8CE173sFIOqtQ=s900-c-k-c0x00ffffff-no-rj" group-title="📺 Tivibu Spor",TİVİBU SPOR HD
+#EXTINF:-1 tvg-name="TİVİBU SPOR HD" tvg-id="" tvg-logo="https://yt3.googleusercontent.com/VfKm_ajwsvkrsG4O6-5m1-LBAo8mgiAz4htzprv1zcF5liZ1Zgz5ANNbU_PYI8CE173sFIOqtQ=s900-c-k-c0x00ffffff-no-rj" group-title="📺 Tivibu Spor / Exxen",TİVİBU SPOR HD
 https://tv1.arectv30.sbs/live/t1.m3u8
-#EXTINF:-1 tvg-name="TİVİBU SPOR 2 HD" tvg-id="" tvg-logo="https://yt3.googleusercontent.com/VfKm_ajwsvkrsG4O6-5m1-LBAo8mgiAz4htzprv1zcF5liZ1Zgz5ANNbU_PYI8CE173sFIOqtQ=s900-c-k-c0x00ffffff-no-rj" group-title="📺 Tivibu Spor",TİVİBU SPOR 2 HD
+#EXTINF:-1 tvg-name="TİVİBU SPOR 2 HD" tvg-id="" tvg-logo="https://yt3.googleusercontent.com/VfKm_ajwsvkrsG4O6-5m1-LBAo8mgiAz4htzprv1zcF5liZ1Zgz5ANNbU_PYI8CE173sFIOqtQ=s900-c-k-c0x00ffffff-no-rj" group-title="📺 Tivibu Spor / Exxen",TİVİBU SPOR 2 HD
 https://tv1.arectv30.sbs/live/t2.m3u8
-#EXTINF:-1 tvg-name="TİVİBU SPOR 3 HD" tvg-id="" tvg-logo="https://yt3.googleusercontent.com/VfKm_ajwsvkrsG4O6-5m1-LBAo8mgiAz4htzprv1zcF5liZ1Zgz5ANNbU_PYI8CE173sFIOqtQ=s900-c-k-c0x00ffffff-no-rj" group-title="📺 Tivibu Spor",TİVİBU SPOR 3 HD
+#EXTINF:-1 tvg-name="TİVİBU SPOR 3 HD" tvg-id="" tvg-logo="https://yt3.googleusercontent.com/VfKm_ajwsvkrsG4O6-5m1-LBAo8mgiAz4htzprv1zcF5liZ1Zgz5ANNbU_PYI8CE173sFIOqtQ=s900-c-k-c0x00ffffff-no-rj" group-title="📺 Tivibu Spor / Exxen",TİVİBU SPOR 3 HD
 https://tv1.arectv30.sbs/live/t3.m3u8
-#EXTINF:-1 tvg-name="TİVİBU SPOR 4 HD" tvg-id="" tvg-logo="https://yt3.googleusercontent.com/VfKm_ajwsvkrsG4O6-5m1-LBAo8mgiAz4htzprv1zcF5liZ1Zgz5ANNbU_PYI8CE173sFIOqtQ=s900-c-k-c0x00ffffff-no-rj" group-title="📺 Tivibu Spor",TİVİBU SPOR 4 HD
+#EXTINF:-1 tvg-name="TİVİBU SPOR 4 HD" tvg-id="" tvg-logo="https://yt3.googleusercontent.com/VfKm_ajwsvkrsG4O6-5m1-LBAo8mgiAz4htzprv1zcF5liZ1Zgz5ANNbU_PYI8CE173sFIOqtQ=s900-c-k-c0x00ffffff-no-rj" group-title="📺 Tivibu Spor / Exxen",TİVİBU SPOR 4 HD
 https://tv1.arectv30.sbs/live/t4.m3u8
+#EXTINF:-1 tvg-name="Exxen 1" tvg-id="" tvg-logo="https://yt3.googleusercontent.com/l6coMKnG4WqaBPyJA937Yi3PGaPlyUedDfMkplaBWAKy0JiWLKMZc838fqdme9eKlbmK_tem=s900-c-k-c0x00ffffff-no-rj" group-title="📺 Tivibu Spor / Exxen",Exxen 1
+https://test.dreamboxserver.net/ex1/tracks-v1a1/mono.m3u8
+#EXTINF:-1 tvg-name="Exxen 2" tvg-id="" tvg-logo="https://yt3.googleusercontent.com/l6coMKnG4WqaBPyJA937Yi3PGaPlyUedDfMkplaBWAKy0JiWLKMZc838fqdme9eKlbmK_tem=s900-c-k-c0x00ffffff-no-rj" group-title="📺 Tivibu Spor / Exxen",Exxen 2
+https://test.dreamboxserver.net/ex2/tracks-v1a1/mono.m3u8
+#EXTINF:-1 tvg-name="Exxen 3" tvg-id="" tvg-logo="https://yt3.googleusercontent.com/l6coMKnG4WqaBPyJA937Yi3PGaPlyUedDfMkplaBWAKy0JiWLKMZc838fqdme9eKlbmK_tem=s900-c-k-c0x00ffffff-no-rj" group-title="📺 Tivibu Spor / Exxen",Exxen 3
+https://test.dreamboxserver.net/ex3/tracks-v1a1/mono.m3u8
+#EXTINF:-1 tvg-name="Exxen 4" tvg-id="" tvg-logo="https://yt3.googleusercontent.com/l6coMKnG4WqaBPyJA937Yi3PGaPlyUedDfMkplaBWAKy0JiWLKMZc838fqdme9eKlbmK_tem=s900-c-k-c0x00ffffff-no-rj" group-title="📺 Tivibu Spor / Exxen",Exxen 4
+https://test.dreamboxserver.net/ex4/tracks-v1a1/mono.m3u8
+#EXTINF:-1 tvg-name="Exxen 5" tvg-id="" tvg-logo="https://yt3.googleusercontent.com/l6coMKnG4WqaBPyJA937Yi3PGaPlyUedDfMkplaBWAKy0JiWLKMZc838fqdme9eKlbmK_tem=s900-c-k-c0x00ffffff-no-rj" group-title="📺 Tivibu Spor / Exxen",Exxen 5
+https://test.dreamboxserver.net/ex5/tracks-v1a1/mono.m3u8
+#EXTINF:-1 tvg-name="Exxen 6" tvg-id="" tvg-logo="https://yt3.googleusercontent.com/l6coMKnG4WqaBPyJA937Yi3PGaPlyUedDfMkplaBWAKy0JiWLKMZc838fqdme9eKlbmK_tem=s900-c-k-c0x00ffffff-no-rj" group-title="📺 Tivibu Spor / Exxen",Exxen 6
+https://test.dreamboxserver.net/ex6/tracks-v1a1/mono.m3u8
 #EXTINF:-1 tvg-name="TABİİ SPOR HD" tvg-id="73" tvg-logo="https://image.milimaj.com/i/milliyet/75/750x0/66ebe052677058f33337d70b.jpg" group-title="🏃 Tabii Spor",TABİİ SPOR HD
 https://beert7sqimrk0bfdupfgn6qew.medya.trt.com.tr/master_1080p.m3u8
 #EXTINF:-1 tvg-name="TABİİ SPOR 1 HD" tvg-id="73" tvg-logo="https://image.milimaj.com/i/milliyet/75/750x0/66ebe052677058f33337d70b.jpg" group-title="🏃 Tabii Spor",TABİİ SPOR 1 HD

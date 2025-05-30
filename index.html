@@ -528,28 +528,25 @@
                 let allChannels = [];
                 let allGroups = [];
                 let activeGroup = 'Tüm Kanallar';
+                
+                // Tema ayarı için kontrol
                 let darkMode = localStorage.getItem('darkMode') === 'true';
-                
-                // Tema ayarını uygula
-                function applyTheme() {
-                    if (darkMode) {
-                        document.body.classList.add('dark-mode');
-                        themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
-                    } else {
-                        document.body.classList.remove('dark-mode');
-                        themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
-                    }
+                if (darkMode) {
+                    document.body.classList.add('dark-mode');
                 }
+                updateThemeIcon();
                 
-                // Tema değiştirme
+                // Tema değiştirme butonu
                 themeToggle.addEventListener('click', function() {
                     darkMode = !darkMode;
                     localStorage.setItem('darkMode', darkMode);
-                    applyTheme();
+                    document.body.classList.toggle('dark-mode');
+                    updateThemeIcon();
                 });
                 
-                // Başlangıç temasını uygula
-                applyTheme();
+                function updateThemeIcon() {
+                    themeToggle.innerHTML = darkMode ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+                }
                 
                 // Kanal listesini yükle
                 fetch(m3uUrl)
@@ -606,11 +603,25 @@
                         btn.onclick = () => {
                             activeGroup = group;
                             renderGroups();
-                            const filtered = group === 'Tüm Kanallar' ? allChannels : allChannels.filter(ch => ch.group === group);
-                            renderChannels(filtered);
+                            filterChannels();
                         };
                         groupsFilter.appendChild(btn);
                     });
+                }
+
+                // Kanal filtreleme fonksiyonu
+                function filterChannels() {
+                    const searchQuery = searchInput.value.toLowerCase().trim();
+                    let filtered = activeGroup === 'Tüm Kanallar' ? allChannels : allChannels.filter(ch => ch.group === activeGroup);
+                    
+                    if (searchQuery) {
+                        filtered = filtered.filter(ch => 
+                            ch.name.toLowerCase().includes(searchQuery) || 
+                            (ch.group && ch.group.toLowerCase().includes(searchQuery))
+                        );
+                    }
+                    
+                    renderChannels(filtered);
                 }
 
                 // Kanal kartlarını oluştur
@@ -689,34 +700,19 @@
                     }
                 });
 
-                // Arama özelliği
-                function performSearch() {
-                    const query = searchInput.value.toLowerCase().trim();
-                    if (!query) {
-                        const filtered = activeGroup === 'Tüm Kanallar' ? allChannels : allChannels.filter(ch => ch.group === activeGroup);
-                        renderChannels(filtered);
-                        return;
-                    }
-                    
-                    const filtered = allChannels.filter(ch => 
-                        ch.name.toLowerCase().includes(query) || 
-                        (ch.group && ch.group.toLowerCase().includes(query))
-                    );
-                    renderChannels(filtered);
-                }
-
-                searchBtn.addEventListener('click', performSearch);
-                
-                searchInput.addEventListener('keypress', function(e) {
-                    if (e.key === 'Enter') {
-                        performSearch();
-                    }
+                // Arama işlevselliği
+                searchInput.addEventListener('input', function() {
+                    filterChannels();
                 });
 
-                searchInput.addEventListener('input', function() {
-                    if (!searchInput.value.trim()) {
-                        const filtered = activeGroup === 'Tüm Kanallar' ? allChannels : allChannels.filter(ch => ch.group === activeGroup);
-                        renderChannels(filtered);
+                searchBtn.addEventListener('click', function() {
+                    filterChannels();
+                });
+
+                // Enter tuşu ile arama
+                searchInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        filterChannels();
                     }
                 });
             }

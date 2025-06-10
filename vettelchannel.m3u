@@ -32,9 +32,9 @@ https://turkmedya-live.ercdn.net/tv360/tv360.m3u8
 #EXTINF:-1 tvg-name="SHOWMAX TV" tvg-id="" tvg-logo="https://i.ibb.co/qJnvXJQ/show-max.png" group-title="📰 Ulusal",SHOWMAX TV
 https://raw.githubusercontent.com/ipstreet312/freeiptv/master/ressources/tur/shmax.m3u8
 #EXTINF:-1 tvg-name="A HABER" tvg-id="" tvg-logo="https://i.ibb.co/Hhjcgm3/a-haber.png" group-title="🗞️ Haber",A HABER
-https://trkvz-live.ercdn.net/ahaberhd/ahaberhd.m3u8
+https://kerimmkirac-vavoo.hf.space/proxy/m3u?url=https://vavoo.to/play/535272601/index.m3u8
 #EXTINF:-1 tvg-name="A PARA" tvg-id="" tvg-logo="https://i.ibb.co/FnT7ftQ/a-para.png" group-title="🗞️ Haber",A PARA
-https://trkvz-live.ercdn.net/aparahd/aparahd.m3u8
+https://kerimmkirac-vavoo.hf.space/proxy/m3u?url=https://vavoo.to/play/2318923445/index.m3u8
 #EXTINF:-1 tvg-name="HABER GLOBAL" tvg-id="Haber Global.tr" tvg-logo="https://raw.githubusercontent.com/GitLatte/m3ueditor/refs/heads/site/images/kanal-gorselleri/turkiye/haber-global-tr.png" group-title="🗞️ Haber",HABER GLOBAL
 https://tv.ensonhaber.com/haberglobal/haberglobal.m3u8
 #EXTINF:-1 tvg-name="KANAL 24" tvg-id="Kanal 24.tr" tvg-logo="https://i.ibb.co/tHQpWvn/24.png" group-title="🗞️ Haber",KANAL 24
@@ -46,7 +46,7 @@ https://tgrthaber-live.daioncdn.net/tgrthaber/tgrthaber_720p.m3u8
 #EXTINF:-1 tvg-name="CNN TÜRK" tvg-id="cnn" tvg-logo="https://i.ibb.co/bFsmkwJ/cnn-turk.png" group-title="🗞️ Haber",CNN TÜRK
 https://b.fulltvizle.com/cnn/playlist.m3u8
 #EXTINF:-1 tvg-name="NTV" tvg-id="" tvg-logo="https://i.ibb.co/gRR1zpm/ntv.png" group-title="🗞️ Haber",NTV
-https://dogus.daioncdn.net/ntv/ntv_720p.m3u8?ce=3
+https://kerimmkirac-vavoo.hf.space/proxy/m3u?url=https://vavoo.to/play/2073292907/index.m3u8
 #EXTINF:-1 tvg-name="ÜLKE TV" tvg-id="" tvg-logo="https://i.ibb.co/zG9kTh6/ulke-tv.png" group-title="🗞️ Haber",ÜLKE TV
 https://livetv.radyotvonline.net/kanal7live/ulketv/chunklist.m3u8
 #EXTINF:-1 tvg-name="TELE 1" tvg-id="" tvg-logo="https://i.ibb.co/6yVTw6f/tele1.png" group-title="🗞️ Haber",TELE 1
@@ -88,15 +88,15 @@ https://217.30.11.74/e/157.m3u8
 #EXTINF:-1 tvg-name="TRT SPOR YILDIZ" tvg-id="" tvg-logo="https://i.ibb.co/YRgKcDn/trt-spor-yildiz.png" group-title="🏅 Spor",TRT SPOR YILDIZ
 https://tv-trtspor2.medya.trt.com.tr/master.m3u8
 #EXTINF:-1 tvg-name="HT SPOR" tvg-id="" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTY7GhcE-nEzPhdZ2QsYO005rW8cQuBC9o6nQ&s" group-title="🏅 Spor",HT SPOR
-https://ciner.daioncdn.net/ht-spor/ht-spor.m3u8?app=web
+https://kerimmkirac-vavoo.hf.space/proxy/m3u?url=https://vavoo.to/play/2773338492/index.m3u8
 #EXTINF:-1 tvg-name="TJK TV" tvg-id="" tvg-logo="https://i.ibb.co/PrkXrRn/tjk-tv.png" group-title="🏅 Spor",TJK TV
 https://tjktv-live.tjk.org/tjktv/tjktv.m3u8
 #EXTINF:-1 tvg-name="TJK TV 2" tvg-id="" tvg-logo="https://i.ibb.co/PrkXrRn/tjk-tv.png" group-title="🏅 Spor",TJK TV 2
 https://tjktv-live.tjk.org/tjktv2/tjktv2.m3u8
 #EXTINF:-1 tvg-name="NBA TV HD" tvg-id="" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQKZFiCQeT2twfp-iI5i2GAeODTyC3nGG9Vhg&s" group-title="🏅 Spor",NBA TV HD
-https://r14.af91.workers.dev/list/yayinnbatv.m3u8
+https://kerimmkirac-vavoo.hf.space/proxy/m3u?url=https://vavoo.to/play/545548133/index.m3u8
 #EXTINF:-1 tvg-name="beIN SPORTS HABER" tvg-id="" tvg-logo="https://i.imgur.com/QWo0x7S.jpg" group-title="⚽ beIN Sports",beIN SPORTS HABER
-https://tinyurl.com/SyndraxicBsHaberHD
+https://kerimmkirac-vavoo.hf.space/proxy/m3u?url=https://vavoo.to/play/3989995533/index.m3u8
 #EXTINF:-1 tvg-name="beIN SPORTS 1 [A]" tvg-id="Beinsports.tr" tvg-logo="https://raw.githubusercontent.com/pigzillaaaaa/iptv-scraper/main/logos/bein-sports-1.png" group-title="⚽ beIN Sports",beIN SPORTS 1 [A]
 https://kerimmkirac-vavoo.hf.space/proxy/m3u?url=https://vavoo.to/play/2113462398/index.m3u8
 #EXTINF:-1 tvg-name="beIN SPORTS 1 [B]" tvg-id="Beinsports.tr" tvg-logo="https://raw.githubusercontent.com/pigzillaaaaa/iptv-scraper/main/logos/bein-sports-1.png" group-title="⚽ beIN Sports",beIN SPORTS 1 [B]
@@ -168,7 +168,7 @@ https://saran-live.ercdn.net/fx/index.m3u8
 #EXTINF:-1 tvg-name="MOVİESMART TÜRK" tvg-id="67" tvg-logo="https://i.ibb.co/0XQz0QJ/moviesmart.png" group-title="🎬 Sinema",MOVİESMART TÜRK
 https://tv1.arectv30.sbs/live/mvturk.m3u8
 #EXTINF:-1 tvg-name="SİNEMA TV" tvg-id="61" tvg-logo="https://raw.githubusercontent.com/GitLatte/m3ueditor/refs/heads/site/images/kanal-gorselleri/turkiye/sinema-tv-tr.png" group-title="🎬 Sinema",SİNEMA TV
-https://tv1.arectv30.sbs/live/sinema.m3u8
+https://kerimmkirac-vavoo.hf.space/proxy/m3u?url=https://vavoo.to/play/2780830033/index.m3u8
 #EXTINF:-1 tvg-name="SİNEMA TV 2" tvg-id="60" tvg-logo="https://raw.githubusercontent.com/GitLatte/m3ueditor/refs/heads/site/images/kanal-gorselleri/turkiye/sinema-tv2-tr.png" group-title="🎬 Sinema",SİNEMA TV 2
 https://tv1.arectv30.sbs/live/sinema2.m3u8
 #EXTINF:-1 tvg-name="SİNEMA TV AKSİYON" tvg-id="59" tvg-logo="https://raw.githubusercontent.com/GitLatte/m3ueditor/refs/heads/site/images/kanal-gorselleri/turkiye/sinema-aksiyon-tr.png" group-title="🎬 Sinema",SİNEMA TV AKSİYON
@@ -176,7 +176,7 @@ https://tv1.arectv30.sbs/live/sinemaaksiyon.m3u8
 #EXTINF:-1 tvg-name="SİNEMA TV KOMEDİ" tvg-id="57" tvg-logo="https://raw.githubusercontent.com/GitLatte/m3ueditor/refs/heads/site/images/kanal-gorselleri/turkiye/sinema-komedi-tr.png" group-title="🎬 Sinema",SİNEMA TV KOMEDİ
 https://tv1.arectv30.sbs/live/sinemakomedi.m3u8
 #EXTINF:-1 tvg-name="SİNEMA TV YERLİ" tvg-id="56" tvg-logo="https://raw.githubusercontent.com/GitLatte/m3ueditor/refs/heads/site/images/kanal-gorselleri/turkiye/sinema-yerli-tr.png" group-title="🎬 Sinema",SİNEMA TV YERLİ
-https://tv1.arectv30.sbs/live/sinemayerli.m3u8
+https://kerimmkirac-vavoo.hf.space/proxy/m3u?url=https://vavoo.to/play/1897159473/index.m3u8
 #EXTINF:-1 tvg-name="SİNEMA TV AİLE" tvg-id="55" tvg-logo="https://raw.githubusercontent.com/GitLatte/m3ueditor/refs/heads/site/images/kanal-gorselleri/turkiye/sinema-aile-tr.png" group-title="🎬 Sinema",SİNEMA TV AİLE
 https://tv1.arectv30.sbs/live/sinemaaile.m3u8
 #EXTINF:-1 tvg-name="SİNEMA TV 1001" tvg-id="53" tvg-logo="https://raw.githubusercontent.com/GitLatte/m3ueditor/refs/heads/site/images/kanal-gorselleri/turkiye/sinema-1001-tr.png" group-title="🎬 Sinema",SİNEMA TV 1001

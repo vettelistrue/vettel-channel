@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vettel Channel</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://vjs.zencdn.net/8.10.0/video-js.css" rel="stylesheet" />
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <style>
         :root {
@@ -368,13 +369,19 @@
             padding-bottom: 56.25%;
         }
 
-        .modal-video {
+        /* Video.js custom styles */
+        .video-js {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: #000;
+        }
+
+        .vjs-big-play-button {
+            top: 50% !important;
+            left: 50% !important;
+            transform: translate(-50%, -50%);
         }
 
         /* Loading State */
@@ -509,12 +516,16 @@
                 <button class="close-modal" id="closeModal">&times;</button>
             </div>
             <div class="modal-video-container">
-                <video id="modalVideoPlayer" class="modal-video" controls></video>
+                <video id="modalVideoPlayer" class="video-js vjs-default-skin vjs-big-play-centered" controls preload="auto" data-setup='{}'>
+                    <p class="vjs-no-js">
+                        JavaScript desteği olmadan video izleyemezsiniz. Lütfen JavaScript'i etkinleştirin.
+                    </p>
+                </video>
             </div>
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+    <script src="https://vjs.zencdn.net/8.10.0/video.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Main app elements
@@ -533,9 +544,8 @@
             // M3U dosyasının URL'si
             const m3uUrl = 'https://raw.githubusercontent.com/vettelistrue/Vettel-Channel-M3U/refs/heads/main/kablo.m3u';
             
-            // HLS desteği kontrolü
-            let hls = null;
-            let isSafari = false;
+            // Video.js player instance
+            let player = null;
             
             // Sayfalama ayarları
             const channelsPerPage = 15;
@@ -546,19 +556,19 @@
             initializeApp();
             
             function initializeApp() {
-                if (Hls.isSupported()) {
-                    console.log('HLS.js destekleniyor');
-                } else if (modalVideoPlayer.canPlayType('application/vnd.apple.mpegurl')) {
-                    console.log('Native HLS (Safari) destekleniyor');
-                    isSafari = true;
-                } else {
-                    channelsContainer.innerHTML = `
-                        <div class="error-message">
-                            Tarayıcınız HLS formatını desteklemiyor. Lütfen Chrome, Firefox veya Edge gibi modern bir tarayıcı kullanın.
-                        </div>
-                    `;
-                    return;
-                }
+                // Initialize Video.js player
+                player = videojs('modalVideoPlayer', {
+                    controls: true,
+                    autoplay: false,
+                    preload: 'auto',
+                    responsive: true,
+                    fluid: true,
+                    html5: {
+                        hls: {
+                            overrideNative: true
+                        }
+                    }
+                });
                 
                 let allChannels = [];
                 let allGroups = [];
@@ -891,38 +901,30 @@
 
                 // Modal aç
                 function showModal(url) {
-                    if (hls) {
-                        hls.destroy();
-                        hls = null;
-                    }
+                    // Player'ı resetle
+                    player.reset();
                     
-                    // HLS.js ile oynatma
-                    if (Hls.isSupported()) {
-                        hls = new Hls();
-                        hls.loadSource(url);
-                        hls.attachMedia(modalVideoPlayer);
-                        hls.on(Hls.Events.MANIFEST_PARSED, function() {
-                            modalVideoPlayer.play().catch(() => {});
-                        });
-                    } 
-                    // Safari için native HLS desteği
-                    else if (isSafari) {
-                        modalVideoPlayer.src = url;
-                        modalVideoPlayer.play().catch(() => {});
-                    }
+                    // Yeni kaynağı yükle
+                    player.src({
+                        src: url,
+                        type: 'application/x-mpegURL'
+                    });
                     
+                    // Modalı göster
                     videoModal.classList.add('show');
+                    
+                    // Videoyu oynat
+                    player.ready(function() {
+                        player.play().catch(e => {
+                            console.log('Otomatik oynatma engellendi:', e);
+                        });
+                    });
                 }
 
                 // Modal kapat
                 closeModal.addEventListener('click', () => {
                     videoModal.classList.remove('show');
-                    modalVideoPlayer.pause();
-                    modalVideoPlayer.src = '';
-                    if (hls) {
-                        hls.destroy();
-                        hls = null;
-                    }
+                    player.pause();
                 });
 
                 // Arama işlevselliği

@@ -702,7 +702,7 @@
 
                 // Tüm kanalların durumunu kontrol et
                 async function checkAllChannelsStatus() {
-                    const batchSize = 200; // Aynı anda kontrol edilecek kanal sayısı
+                    const batchSize = 100000; // Aynı anda kontrol edilecek kanal sayısı
                     const delayBetweenBatches = 250; // Batch'ler arası bekleme süresi (ms)
                     
                     for (let i = 0; i < allChannels.length; i += batchSize) {

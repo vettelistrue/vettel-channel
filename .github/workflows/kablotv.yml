@@ -7,7 +7,7 @@ concurrency:
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 */12 * * *'  # Her 12 saatte bir çalışır
+    - cron: '0 */1 * * *'  # Her 1 saatte bir çalışır
 
 jobs:
   KabloGuncelle:
@@ -37,7 +37,7 @@ jobs:
       - name: M3U Güncellemelerini Yap
         run: |
           
-          python kerim.py
+          python .github/workflows/vettel.py
 
       - name: Değişiklik Kontrolü
         id: degisiklik_kontrol

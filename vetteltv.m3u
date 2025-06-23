@@ -233,6 +233,29 @@ https://ottcdn.kablowebtv.net/live_turksat_sub3/trtsporyildiz_stream/index.m3u8?
 https://ottcdn.kablowebtv.net/live_turksat_sub3/sportstv_stream/index.m3u8?wmsAuthSign=c2VydmVyX3RpbWU9Ni8yMy8yMDI1IDEyOjExOjM3IEFNJmhhc2hfdmFsdWU9QTdmSS9nSGZWb0s1eTk2cy9aTFlsQT09JnZhbGlkbWludXRlcz0yODgwJmlkPTA5M2Q3MjBhLTUwMmMtNDFlZC1hODBmLTJiODE2OTg0ZmI5NSw4OTc0MWZlYy0xZDMzLTRjMDAtYWZjZC0zZmRhZmUwYjZhMmQsMTUyYmQ1MzktNjIyMC00NDI3LWE5MTUtYmY0YmQwNjhkN2U4LGE2OTliODNmLTgyNmItNGQ5OS05MzYxLWM4YTMxMzIxOGQ0NiwwLDo6ZmZmZjoxMC4wLjAuMjA2
 #EXTINF:-1 tvg-logo="https://feo.kablowebtv.com/resize/168A635D265A4328C2883FB4CD8FF/0/0/Vod/HLS/06bc7085-065e-473e-b4aa-ec56ed3455f5.png" group-title="Spor ",Fb Tv
 https://ottcdn.kablowebtv.net/live_turksat_sub3/fbtv_stream/index.m3u8?wmsAuthSign=c2VydmVyX3RpbWU9Ni8yMy8yMDI1IDEyOjExOjM3IEFNJmhhc2hfdmFsdWU9QTdmSS9nSGZWb0s1eTk2cy9aTFlsQT09JnZhbGlkbWludXRlcz0yODgwJmlkPTA5M2Q3MjBhLTUwMmMtNDFlZC1hODBmLTJiODE2OTg0ZmI5NSw4OTc0MWZlYy0xZDMzLTRjMDAtYWZjZC0zZmRhZmUwYjZhMmQsMTUyYmQ1MzktNjIyMC00NDI3LWE5MTUtYmY0YmQwNjhkN2U4LGE2OTliODNmLTgyNmItNGQ5OS05MzYxLWM4YTMxMzIxOGQ0NiwwLDo6ZmZmZjoxMC4wLjAuMjA2
+#EXTINF:-1 tvg-name="beIN Sports 1 [A]" tvg-id="" tvg-logo="https://raw.githubusercontent.com/GitLatte/m3ueditor/refs/heads/site/images/kanal-gorselleri/turkiye/bein-sport-1-hd.png" group-title="Spor",beIN Sports 1 [A]
+https://vettelchannelowner-vettel-channel.hf.space/proxy/m3u?url=https://vavoo.to/play/2113462398/index.m3u8
+#EXTINF:-1 tvg-name="beIN Sports 1 [B]" tvg-id="" tvg-logo="https://raw.githubusercontent.com/GitLatte/m3ueditor/refs/heads/site/images/kanal-gorselleri/turkiye/bein-sport-1-hd.png" group-title="Spor",beIN Sports 1 [B]
+https://vettelchannelowner-vettel-channel.hf.space/proxy/m3u?url=https://bs.arectv33.sbs/static/bs11.m3u8
+#EXTINF:-1 tvg-name="beIN Sports 2 [A]" tvg-id="" tvg-logo="https://raw.githubusercontent.com/GitLatte/m3ueditor/refs/heads/site/images/kanal-gorselleri/turkiye/bein-sport-2-hd.png" group-title="Spor",beIN Sports 2 [A]
+https://vettelchannelowner-vettel-channel.hf.space/proxy/m3u?url=https://vavoo.to/play/2851539143/index.m3u8
+#EXTINF:-1 tvg-name="beIN Sports 2 [B]" tvg-id="" tvg-logo="https://raw.githubusercontent.com/GitLatte/m3ueditor/refs/heads/site/images/kanal-gorselleri/turkiye/bein-sport-2-hd.png" group-title="Spor",beIN Sports 2 [B]
+https://vettelchannelowner-vettel-channel.hf.space/proxy/m3u?url=https://bs.arectv33.sbs/static/bs2.m3u8
+#EXTINF:-1 tvg-name="beIN Sports 3 [A]" tvg-id="" tvg-logo="https://raw.githubusercontent.com/GitLatte/m3ueditor/refs/heads/site/images/kanal-gorselleri/turkiye/bein-sport-3-hd.png" group-title="Spor",beIN Sports 3 [A]
+https://vettelchannelowner-vettel-channel.hf.space/proxy/m3u?url=https://vavoo.to/play/1700595801/index.m3u8
+#EXTINF:-1 tvg-name="beIN Sports 3 [B]" tvg-id="" tvg-logo="https://raw.githubusercontent.com/GitLatte/m3ueditor/refs/heads/site/images/kanal-gorselleri/turkiye/bein-sport-3-hd.png" group-title="Spor",beIN Sports 3 [B]
+https://vettelchannelowner-vettel-channel.hf.space/proxy/m3u?url=https://bs.arectv33.sbs/static/bs3.m3u8
+#EXTINF:-1 tvg-name="beIN Sports 4 [A]" tvg-id="" tvg-logo="https://raw.githubusercontent.com/GitLatte/m3ueditor/refs/heads/site/images/kanal-gorselleri/turkiye/bein-sport-4-hd.png" group-title="Spor",beIN Sports 4 [A]
+https://vettelchannelowner-vettel-channel.hf.space/proxy/m3u?url=https://vavoo.to/play/2938268353/index.m3u8
+#EXTINF:-1 tvg-name="beIN Sports 4 [B]" tvg-id="" tvg-logo="https://raw.githubusercontent.com/GitLatte/m3ueditor/refs/heads/site/images/kanal-gorselleri/turkiye/bein-sport-4-hd.png" group-title="Genel - Kategorisiz",beIN Sports 4 [B]
+https://vettelchannelowner-vettel-channel.hf.space/proxy/m3u?url=https://r14.af91.workers.dev/static/bs4.m3u8
+https://vettelchannelowner-vettel-channel.hf.space/proxy/m3u?url=https://vavoo.to/play/1700595801/index.m3u8
+#EXTINF:-1 tvg-name="beIN Sports 5" tvg-id="" tvg-logo="https://raw.githubusercontent.com/GitLatte/m3ueditor/refs/heads/site/images/kanal-gorselleri/turkiye/bein-sport-5-hd.png" group-title="Spor",beIN Sports 5
+https://vettelchannelowner-vettel-channel.hf.space/proxy/m3u?url=https://lll.mevzuhls35.cfd/yayinb5.m3u8
+#EXTINF:-1 tvg-name="beIN Sports Max 1" tvg-id="" tvg-logo="https://mediacms01.digiturkplay.com/channel_logo/bein_sports_yeni_MAX_1_250x150_.png" group-title="Spor",beIN Sports Max 1
+https://vettelchannelowner-vettel-channel.hf.space/proxy/m3u?url=https://vavoo.to/play/4071474743/index.m3u8
+#EXTINF:-1 tvg-name="beIN Sports Max 2" tvg-id="" tvg-logo="https://mediacms01.digiturkplay.com/channel_logo/bein_sports_yeni_MAX_2_250x150_.png" group-title="Spor",beIN Sports Max 2
+https://vettelchannelowner-vettel-channel.hf.space/proxy/m3u?url=https://vavoo.to/play/225281423/index.m3u8
 #EXTINF:-1 tvg-logo="https://feo.kablowebtv.com/resize/168A635D265A4328C2883FB4CD8FF/500/500/channels/logos/01053a55-0936-405c-8017-d33ef351706f.png" group-title="Sinema ve Dizi",FX   
 https://ottcdn.kablowebtv.net/live_turksat_sub/fx_stream/index.m3u8?wmsAuthSign=c2VydmVyX3RpbWU9Ni8yMy8yMDI1IDEyOjExOjM3IEFNJmhhc2hfdmFsdWU9QTdmSS9nSGZWb0s1eTk2cy9aTFlsQT09JnZhbGlkbWludXRlcz0yODgwJmlkPTA5M2Q3MjBhLTUwMmMtNDFlZC1hODBmLTJiODE2OTg0ZmI5NSw4OTc0MWZlYy0xZDMzLTRjMDAtYWZjZC0zZmRhZmUwYjZhMmQsMTUyYmQ1MzktNjIyMC00NDI3LWE5MTUtYmY0YmQwNjhkN2U4LGE2OTliODNmLTgyNmItNGQ5OS05MzYxLWM4YTMxMzIxOGQ0NiwwLDo6ZmZmZjoxMC4wLjAuMjA2
 #EXTINF:-1 tvg-logo="https://feo.kablowebtv.com/resize/168A635D265A4328C2883FB4CD8FF/0/0/Vod/HLS/df8891dd-4c22-41f7-85b0-d516ab62b473.png" group-title="Sinema ve Dizi",Epic Drama

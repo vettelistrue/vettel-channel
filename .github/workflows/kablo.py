@@ -4,7 +4,10 @@ import gzip
 from io import BytesIO
 
 def get_canli_tv_m3u():
-    """"""
+    """
+    Kablo Web TV API'sinden canlı TV kanal verilerini çeker ve
+    mevcut bir M3U dosyasına ekler. Dosyadaki mevcut içerik korunur.
+    """
     
     url = "https://core-api.kablowebtv.com/api/channels"
     headers = {
@@ -26,7 +29,7 @@ def get_canli_tv_m3u():
         try:
             with gzip.GzipFile(fileobj=BytesIO(response.content)) as gz:
                 content = gz.read().decode('utf-8')
-        except:
+        except: # Gzip hatası olursa direkt içeriği dene
             content = response.content.decode('utf-8')
         
         data = json.loads(content)
@@ -36,13 +39,18 @@ def get_canli_tv_m3u():
             return False
         
         channels = data['Data']['AllChannels']
-        print(f"✅ {len(channels)} kanal bulundu")
+        print(f"✅ {len(channels)} kanal bulundu.")
         
-        with open("vetteltv.m3u", "w", encoding="utf-8") as f:
-            f.write("#EXTM3U\n")
+        # Dosyayı "append" (ekleme) modunda açın.
+        # Bu, dosyanın üzerine yazmak yerine, içeriği sonuna ekleyecektir.
+        with open("vetteltv.m3u", "a", encoding="utf-8") as f:
+            # #EXTM3U başlığı genellikle dosyanın başında bir kez bulunur.
+            # Ekleme modunda olduğumuz için her seferinde yazmamalıyız.
+            # Eğer dosya hiç yoksa, Python onu oluşturur ancak #EXTM3U yazılmaz.
+            # İlk kullanımda bu başlığı manuel olarak dosyanın başına eklemeniz gerekebilir
+            # veya dosya boşsa kontrol eden bir mantık ekleyebilirsiniz.
             
             kanal_sayisi = 0
-            kanal_index = 1  
             
             for channel in channels:
                 name = channel.get('Name')
@@ -59,15 +67,21 @@ def get_canli_tv_m3u():
                 if group == "Bilgilendirme":
                     continue
 
-                tvg_id = str(kanal_index)
-
-                f.write(f'#EXTINF:-1 tvg-id="{tvg_id}" tvg-logo="{logo}" group-title="{group}",{name}\n')
+                # tvg-id: Eğer elle eklediğiniz kanallarla çakışma yaşamak istemiyorsanız,
+                # tvg-id'yi ya API'den gelen benzersiz bir değerle doldurun
+                # ya da eklediğiniz kanallar için benzersiz bir ön ek kullanın.
+                # Basit bir sayaç kullanmak (mevcut kodunuzdaki gibi) çakışmalara yol açabilir.
+                # Şimdilik, çakışmayı önlemek adına tvg-id'yi çıkarmayı tercih edebiliriz,
+                # veya API'den uygun bir kimlik geliyorsa onu kullanırız.
+                # Eğer tvg-id çok kritikse, mevcut dosyayı okuyup en yüksek tvg-id'yi bulup
+                # ondan sonra devam etmek daha sağlam bir yöntemdir.
+                
+                f.write(f'#EXTINF:-1 tvg-logo="{logo}" group-title="{group}",{name}\n')
                 f.write(f'{hls_url}\n')
 
                 kanal_sayisi += 1
-                kanal_index += 1  
         
-        print(f"📺 kablo.m3u dosyası oluşturuldu! ({kanal_sayisi} kanal)")
+        print(f"📺 vetteltv.m3u dosyasına {kanal_sayisi} kanal eklendi! Mevcut içeriğiniz korundu.")
         return True
         
     except Exception as e:

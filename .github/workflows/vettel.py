@@ -57,8 +57,8 @@ def parse_m3u(file_path):
     return kanallar
 
 def update_kerim_m3u():
-    yeni_kanallar = parse_m3u('kablo.m3u')
-    hedef_dosya = 'kablo.m3u'
+    yeni_kanallar = parse_m3u('vetteltv.m3u')
+    hedef_dosya = 'vetteltv.m3u'
 
     if not os.path.exists(hedef_dosya):
         print("kerim.m3u bulunamadı. Yeni oluşturuluyor...")

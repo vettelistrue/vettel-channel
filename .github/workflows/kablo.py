@@ -5,12 +5,6 @@ from io import BytesIO
 import os
 
 def get_canli_tv_m3u():
-    """
-    Kablo Web TV API'sinden canlı TV kanal verilerini çeker ve
-    mevcut bir M3U dosyasına yalnızca yeni kanalları ekler.
-    Dosyadaki mevcut içerik ve elle eklenen kanallar korunur.
-    Klonlanmış girişleri engeller.
-    """
     
     url = "https://core-api.kablowebtv.com/api/channels"
     headers = {

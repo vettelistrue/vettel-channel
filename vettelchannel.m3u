@@ -1,3 +1,5 @@
+# Eski ama kendiniz bilirsiniz #
+
 #EXTM3U
 #EXTINF:-1 tvg-name="TRT 1" tvg-id="" tvg-logo="https://raw.githubusercontent.com/GitLatte/m3ueditor/refs/heads/site/images/kanal-gorselleri/turkiye/trt-1-hd-tr.png" group-title="📰 Ulusal",TRT 1
 https://vettelchannelowner-vettel-channel.hf.space/proxy/m3u?url=https://tv-trt1.medya.trt.com.tr/master_1080.m3u8

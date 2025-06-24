@@ -1,17 +1,12 @@
 import requests
 import json
-import time
-import os
+import gzip
+from io import BytesIO
 
-def update_m3u_file():
-    """
-    KabloWebTV API'sinden kanal bilgilerini çeker ve vetteltv.m3u dosyasını günceller.
-    """
-    url = "https://core-api.kablowebtv.com/api/channels"
+def get_canli_tv_m3u():
+    """"""
     
-    # DİKKAT: Authorization token'ı belirli bir süre geçerli olabilir.
-    # Bu token'ı sürekli olarak manuel olarak güncellemeniz gerekebilir.
-    # Güvenlik nedeniyle gerçek uygulamalarda bu tür token'lar doğrudan kodda tutulmaz.
+    url = "https://core-api.kablowebtv.com/api/channels"
     headers = {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36",
         "Referer": "https://tvheryerde.com",
@@ -19,54 +14,65 @@ def update_m3u_file():
         "Cache-Control": "max-age=0",
         "Connection": "keep-alive",
         "Accept-Encoding": "gzip",
-        "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbnYiOiJMSVZFIiwiaXBiIjoiMCIsImNnZCI6IjA5M2Q3MjBhLTUwMmMtNDFlZC1hODBmLTJiODE2OTg0ZmI5NSIsImNzaCI6IlRSS1NUIiwiZGN0IjoiM0VGNzUiLCJkaSI6ImE2OTliODNmLTgyNmItNGQ5OS05MzYxLWM4YTMxMzIxOGQ0NiIsInNnZCI6Ijg5NzQxZmVjLTFkMzMtNGMwMC1hZmNkLTNmZGFmZTBiNmEyZCIsInNwZ2QiOiIxNTJiZDUzOS02MjIwLTQ0MjctYTkxNS1iZjRiZDA2OGQ3ZTgiLCJpY2giOiIwIiwiaWRtIjoiMCIsImlhIjoiOjpmZmZmOjEwLjAuMC4yMDYiLCJhcHYiOiIxLjAuMCIsImFibiI6IjEwMDAiLCJuYmYiOjE3NDUxNTI4MjUsImV4cCI6MTc0NTE1Mjg4NSwiaWF0IjoxNzQ1MTUyODI1fQ.OSlafRMxef4EjHG5t6TqfAQC7y05IiQjwwgf6yMUS9E"
+        "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbnYiOiJMSVZFIiwiaXBiIjoiMCIsImNnZCI6IjA5M2Q3MjBhLTUwMmMtNDFlZC1hODBmLTJiODE2OTg0ZmI5NSIsImNzaCI6IlRSS1NUIiwiZGN0IjoiM0VGNzUiLCJkaSI6ImE2OTliODNmLTgyNmItNGQ5OS05MzYxLWM4YTMxMzIxOGQ0NiIsInNnZCI6Ijg5NzQxZmVjLTFkMzMtNGMwMC1hZmNkLTNmZGFmZTBiNmEyZCIsInNwZ2QiOiIxNTJiZDUzOS02MjIwLTQ0MjctYTkxNS1iZjRiZDA2OGQ3ZTgiLCJpY2giOiIwIiwiaWRtIjoiMCIsImlhIjoiOjpmZmZmOjEwLjAuMC4yMDYiLCJhcHYiOiIxLjAuMCIsImFibiI6IjEwMDAiLCJuYmYiOjE3NDUxNTI4MjUsImV4cCI6MTc0NTE1Mjg4NSwiaWF0IjoxNzQ1MTUyODI1fQ.OSlafRMxef4EjHG5t6TqfAQC7y05IiQjwwgf6yMUS9E"  # Güvenlik için normalde token burada gösterilmemeli
     }
-
+    
     try:
-        response = requests.get(url, headers=headers)
-        response.raise_for_status()  # HTTP hataları için hata fırlatır (örneğin 404 veya 500)
+        print("📡 CanliTV API'den veri alınıyor...")
         
-        channels_data = response.json()
+        response = requests.get(url, headers=headers, timeout=30)
+        response.raise_for_status()
         
-        m3u_content = "#EXTM3U\n" # M3U dosyasının başlangıcı
+        try:
+            with gzip.GzipFile(fileobj=BytesIO(response.content)) as gz:
+                content = gz.read().decode('utf-8')
+        except:
+            content = response.content.decode('utf-8')
         
-        for channel in channels_data:
-            channel_name = channel.get("name", "Bilinmeyen Kanal")
-            stream_url = channel.get("streamUrl")
-            channel_id = channel.get("id", "")
-            channel_logo = channel.get("logo", "")
-
-            if stream_url:
-                # M3U formatında kanal bilgisi ve URL'si
-                m3u_content += f'#EXTINF:-1 tvg-id="{channel_id}" tvg-name="{channel_name}" tvg-logo="{channel_logo}",{channel_name}\n'
-                m3u_content += f"{stream_url}\n"
+        data = json.loads(content)
+        
+        if not data.get('IsSucceeded') or not data.get('Data', {}).get('AllChannels'):
+            print("❌ CanliTV API'den geçerli veri alınamadı!")
+            return False
+        
+        channels = data['Data']['AllChannels']
+        print(f"✅ {len(channels)} kanal bulundu")
         
         with open("vetteltv.m3u", "w", encoding="utf-8") as f:
-            f.write(m3u_content)
-        
-        print(f"vetteltv.m3u dosyası başarıyla güncellendi. Toplam {len(channels_data)} kanal eklendi.")
-        
-    except requests.exceptions.RequestException as e:
-        print(f"API isteği sırasında hata oluştu: {e}")
-    except json.JSONDecodeError as e:
-        print(f"JSON çözme hatası: {e}. Yanıt metni: {response.text}")
-    except Exception as e:
-        print(f"Beklenmeyen bir hata oluştu: {e}")
+            f.write("#EXTM3U\n")
+            
+            kanal_sayisi = 0
+            kanal_index = 1  
+            
+            for channel in channels:
+                name = channel.get('Name')
+                stream_data = channel.get('StreamData', {})
+                hls_url = stream_data.get('HlsStreamUrl') if stream_data else None
+                logo = channel.get('PrimaryLogoImageUrl', '')
+                categories = channel.get('Categories', [])
+                
+                if not name or not hls_url:
+                    continue
+                
+                group = categories[0].get('Name', 'Genel') if categories else 'Genel'
+                
+                if group == "Bilgilendirme":
+                    continue
 
-# Betiği sürekli çalıştırmak için
-def start_continuous_update(interval_minutes=60):
-    """
-    Belirli aralıklarla M3U dosyasını günceller.
-    Args:
-        interval_minutes (int): Güncelleme aralığı (dakika cinsinden).
-    """
-    print(f"M3U dosyasını her {interval_minutes} dakikada bir güncelleyeceğim...")
-    while True:
-        update_m3u_file()
-        print(f"Sonraki güncelleme için {interval_minutes} dakika bekleniyor...")
-        time.sleep(interval_minutes * 60) # Dakikayı saniyeye çevir
+                tvg_id = str(kanal_index)
+
+                f.write(f'#EXTINF:-1 tvg-id="{tvg_id}" tvg-logo="{logo}" group-title="{group}",{name}\n')
+                f.write(f'{hls_url}\n')
+
+                kanal_sayisi += 1
+                kanal_index += 1  
+        
+        print(f"📺 vetteltv.m3u dosyası oluşturuldu! ({kanal_sayisi} kanal)")
+        return True
+        
+    except Exception as e:
+        print(f"❌ Hata: {e}")
+        return False
 
 if __name__ == "__main__":
-    # Betiği başlat
-    # Her 60 dakikada bir güncelleme yapacak şekilde ayarlandı.
-    start_continuous_update(interval_minutes=60)
+    get_canli_tv_m3u()
